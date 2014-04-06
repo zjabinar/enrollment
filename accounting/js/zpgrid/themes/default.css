@@ -1,0 +1,88 @@
+/*
+  Root class name is formed from zpGrid + theme file name with first character
+  in upper case and following characters in lower case.
+*/
+
+.zpGridDefault {
+  border-collapse: collapse;
+  border: none;
+}
+
+.zpGridDefault .zpGridTable {
+  padding: 0px;
+}
+
+.zpGridDefault table {
+  border-collapse: collapse;
+}
+
+.zpGridDefault table td {
+  border: 1px solid #fff;
+  padding: 3px;
+  font: small Arial, sans-serif;
+  color: #000;
+}
+
+.zpGridDefault table tr td.zpGridSortedAsc {
+  padding-right: 20px;
+  background: url(default/sortedasc.gif) no-repeat right center #7f8fbf;
+}
+
+.zpGridDefault table tr td.zpGridSortedDesc {
+  padding-right: 20px;
+  background: url(default/sorteddesc.gif) no-repeat right center #7f8fbf;
+}
+
+.zpGridDefault table .zpGridRowOdd td {
+  background: #e7e7e7;
+}
+
+.zpGridDefault table .zpGridRowEven td {
+  background: #c5c5d0;
+}
+
+.zpGridDefault table .zpGridRow0 td {
+  background: #7f8fbf;
+  cursor: pointer;
+  font-weight: bold;
+  border-top: 1px solid #000;
+}
+
+.zpGridDefault table .zpGridRowLast td {
+  border-bottom: 1px solid #000;
+}
+
+.zpGridDefault table .zpGridCell0 {
+  border-left: 1px solid #000;
+}
+
+.zpGridDefault table .zpGridCellLast {
+  border-right: 1px solid #000;
+}
+
+.zpGridDefault table tr.zpGridRowSelected td {
+  background: #f90;
+}
+
+.zpGridDefault table tr td.zpGridCellSelected {
+  background: #f00;
+}
+
+.zpGridDefault .zpGridPagination {
+  font: small Arial, sans-serif;
+  color: #000;
+  text-align: center;
+}
+
+.zpGridDefault .zpGridNextPage,
+.zpGridDefault .zpGridPrevPage {
+  cursor: pointer;
+}
+
+.zpGridDefaultUpdating {
+  background: #ffc;
+  padding: 15px;
+  border: 1px solid #c90;
+  font: bold medium Arial, sans-serif;
+  color: #c90;
+}

@@ -1,0 +1,286 @@
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+  <script type="text/javascript" src="../utils/utils.js"></script>
+  <script type="text/javascript" src="../utils/transport.js"></script>
+  <script type="text/javascript" src="../utils/zpwidget.js"></script>
+  <script type="text/javascript" src="../src/zpgrid.js"></script>
+  <link href="../themes/layout.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/zpcal.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/template.css" rel="stylesheet" type="text/css" />
+  <link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico" />
+  <title>Zapatec AJAX Grid Widget - Insert, Replace and Delete Alternative</title>
+  <script type='text/javascript' src='../src/zpgrid-query.js'></script>
+</head>
+<body>
+
+	<table class='zpStandard'><tr><td>
+
+	<div class="topMenuHeader">
+		<div class="logo">
+			<a href='http://www.zapatec.com'><img src='../website/images/logoNew.gif' alt='Zapatec logo' border='0'></a>
+		</div>
+		<div class="btn1">
+			<a href="https://www.zapatec.com/zadmin/buy.jsp">
+				<img src="../website/images/buttonBuy.png" alt='Buy Zapatec Forms' border="0">
+			</a>
+		</div>
+
+		<div class="btn1">
+			<a href="http://www.zapatec.com/website/main/pricing.jsp">
+				<img src="../website/images/buttonPricing.png" alt='Pricing for Zapatec Forms' border="0">
+			</a>
+		</div>
+	</div>
+
+	<div class="pageMain">
+	<a href="query.html" style="float:left; margin-left:2em; margin-top:.5em;" accesskey="P">
+			<img border="0" src="../website/images/previous.png" alt="Previous Zapatec Javascript Form Example"></a>
+	<a href="chart.html" style="float:right; margin-right:2em; margin-top:.5em;" accesskey="N">
+			<img border="0" src="../website/images/next.png" alt="Next Zapatec Javascript Form Example"></a>
+		<div class='zpCalSubHeader' style='text-align:center'>Insert, Replace and Delete Alternative</div>
+
+		<br/>	
+
+
+
+
+<div class='leftCol'>
+  <h3>Controls</h3>
+
+  <form name="test" style="font: 11px arial, sans-serif">
+    <fieldset>
+      <p><b>Insert Rows</b></p>
+      <p>
+        Column 1: <input type="text" name="col11" size="5" title='Value for 1st column, 1st insert.' /><br />
+        Column 2: <input type="text" name="col12" size="5" title='Value for 2nd column, 1st insert.' /><br />
+        Column 3: <input type="text" name="col13" size="5" title='Value for 3rd column, 1st insert.' /><br />
+      </p>
+      <p>
+        Column 1: <input type="text" name="col21" size="5" title='Value for 1st column, 2nd insert.' /><br />
+        Column 2: <input type="text" name="col22" size="5" title='Value for 2nd column, 2nd insert.' /><br />
+        Column 3: <input type="text" name="col23" size="5" title='Value for 3rd column, 2nd insert.' /><br />
+      </p>
+      <p>
+        <input type="button" value="Insert" onclick="insertRows()" title='Click to perform the Insert.'/>
+      </p>
+    </fieldset>
+    <fieldset>
+      <p><b>Update Rows</b></p>
+      <p>
+        Column 1: <input type="text" name="col31" size="5" title='New value for this column.'/><br />
+        Column 2: <input type="text" name="col32" size="5" title='New value for this column.'/><br />
+        Column 3: <input type="text" name="col33" size="5" title='New value for this column.'/><br />
+      </p>
+      <p>
+        <b>Where</b><br/>
+		  Column 1 = <input type="text" name="repWhere" size="5" title='Change ALL rows whose Column 1 matches this value.'/>
+      </p>
+      <p>
+        <input type="button" value="Update" onclick="updateRows()" title='Click here to perform the Update.'/>
+      </p>
+    </fieldset>
+    <fieldset>
+      <p><b>Delete Rows</b></p>
+      <p>
+        <b>Where</b><br/>
+		  Column 2 = <input type="text" name="delWhere1" size="5" title='Enter the value of this column to query on.'/><br />
+        <b>AND</b><br/>
+		  Column 3 = <input type="text" name="delWhere2" size="5" title='Enter the value of this column to query on.'/><br />
+      </p>
+      <p>
+        <input type="button" value="Delete" onclick="deleteRows()" title='Click here to perform the Delete.'/>
+      </p>
+    </fieldset>
+  </form>
+
+</div>
+<div class='mainCol'>
+
+<p><b>GridQueryInsert</b>, <b>GridQueryUpdate</b> and <b>GridQueryDelete</b> allow to do following operations with one or several rows at once:
+  <ul>
+    <li>Insert - GridQueryInsert</li>
+    <li>Update using conditions - GridQueryUpdate</li>
+    <li>Delete using conditions - GridQueryDelete</li>
+  </ul>
+</p>
+<p>This is alternative to Grid <b><a href="query.html">query</a></b> method.</p>
+<p>You should use this alternative if you want to explicitly call the <b>GridQueryInsert</b>, <b>GridQueryUpdate</b>, or <b>GridQueryDelete</b> method instead of the generic <b>query</b> method.</p>
+
+<div id="myGrid">
+  <table>
+    <tr>
+      <td>Column 1</td>
+      <td>Column 2</td>
+      <td>Column 3</td>
+    </tr>
+    <tr>
+      <td>Row 0</td>
+      <td>Row 0</td>
+      <td>Row 0</td>
+    </tr>
+    <tr>
+      <td>Row 1</td>
+      <td>Row 1</td>
+      <td>Row 1</td>
+    </tr>
+    <tr>
+      <td>Row 2</td>
+      <td>Row 2</td>
+      <td>Row 2</td>
+    </tr>
+  </table>
+</div>
+
+</div>
+
+<script type="text/javascript" >
+
+// Initialize grid
+var objGrid = new Zapatec.Grid({
+  // Use "myGrid" div as source and container for the grid
+  container: 'myGrid',
+  // Use "winxp" theme which is located in "../themes/" directory
+  theme: 'lightblue'
+});
+
+// Inserts one or several rows
+function insertRows() {
+  var objForm = document.forms.test;
+  // Get rows to insert
+  var arrRows = [];
+  if (objForm.col11.value !== '' || objForm.col12.value !== '' ||
+   objForm.col13.value !== '') {
+    arrRows.push({
+      cells: [
+        {data: objForm.col11.value},
+        {data: objForm.col12.value},
+        {data: objForm.col13.value}
+      ]
+    });
+  }
+  if (objForm.col21.value !== '' || objForm.col22.value !== '' ||
+   objForm.col23.value !== '') {
+    arrRows.push({
+      cells: [
+        {data: objForm.col21.value},
+        {data: objForm.col22.value},
+        {data: objForm.col23.value}
+      ]
+    });
+  }
+  // Create query object
+  var objQuery = new Zapatec.GridQueryInsert({
+    grid: objGrid
+  });
+  // Execute query
+  objQuery.execute({
+    rows: arrRows
+  });
+}
+
+// Updates one or several rows
+function updateRows() {
+  var objForm = document.forms.test;
+  // Get new row values
+  if (objForm.col31.value !== '' || objForm.col32.value !== '' ||
+   objForm.col33.value !== '') {
+    var objValues = {
+      cells: [
+        {data: objForm.col31.value},
+        {data: objForm.col32.value},
+        {data: objForm.col33.value}
+      ]
+    };
+    // Get condition
+    var objWhere = {
+      leftValue: {
+        // Column 1
+        column: 0
+      },
+      rightValue: {
+        // String value
+        value: objForm.repWhere.value,
+        type: 'string'
+      },
+      // were left value equal right value
+      operator: '=='
+    };
+    // Create query object
+    var objQuery = new Zapatec.GridQueryUpdate({
+      grid: objGrid,
+      where: objWhere
+    });
+    // Execute query
+    objQuery.execute(objValues);
+  }
+}
+
+// Deletes one or several rows
+function deleteRows() {
+  var objForm = document.forms.test;
+  // Get condition
+  var objWhere = {
+    leftValue: {
+      // Column 2 == value
+      statement: {
+        leftValue: {
+          // Column 2
+          column: 1
+        },
+        rightValue: {
+          // String value
+          value: objForm.delWhere1.value,
+          type: 'string'
+        },
+        // were left value equal right value
+        operator: '=='
+      }
+    },
+    rightValue: {
+      // Column 3 == value
+      statement: {
+        leftValue: {
+          // Column 3
+          column: 2
+        },
+        rightValue: {
+          // String value
+          value: objForm.delWhere2.value,
+          type: 'string'
+        },
+        // were left value equal right value
+        operator: '=='
+      }
+    },
+    // And
+    operator: '&&'
+  };
+  // Create query object
+  var objQuery = new Zapatec.GridQueryDelete({
+    grid: objGrid,
+    where: objWhere
+  });
+  // Execute query
+  objQuery.execute();
+}
+
+</script>
+</div>
+</div>
+
+	<br/><br/><br/>
+	<div id="divFooter" class="footer" style='text-align:center; margin-top:2em'>
+		&copy; 2004 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+	</div>
+</td></tr></table>
+</body>
+</html>
+

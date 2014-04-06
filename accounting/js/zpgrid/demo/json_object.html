@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<title> Test Page</title>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<script type="text/javascript" src="../utils/utils.js"></script>
+<script type="text/javascript" src="../utils/transport.js"></script>
+<script type="text/javascript" src="../utils/zpwidget.js"></script>
+<script type="text/javascript" src="../src/zpgrid.js"></script>
+
+<link href="../css/template.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+#myFilterOut div {
+	text-align: left;
+}
+</style>
+</head>
+<body>
+
+<div class='leftCol'>
+<h3> Controls</h3>
+
+<script type="text/javascript" >
+var myTable;
+function delimitInt (form) {
+	myTable.limitRange({column: 3, min: form.intMin.value, max: form.intMax.value});
+}
+function delimitText (form) {
+	myTable.limitRange({column: 1, min: form.textMin.value, max: form.textMax.value});
+}
+</script>
+
+<fieldset id="myFilterOut">
+</fieldset>
+
+<FORM NAME="myform" ACTION="" METHOD="POST"><BR>
+<fieldset>
+Integer <p/>
+Min: <INPUT TYPE="text" NAME="intMin" size='4' VALUE=""><P>
+Max: <INPUT TYPE="text" NAME="intMax" size='4' VALUE=""><P>
+<INPUT TYPE="button" NAME="button" Value="Filter" onClick="delimitInt(this.form)">
+</fieldset>
+
+<fieldset>
+Text <p/>
+<label> Min:</label> <INPUT TYPE="text" NAME="textMin" size='4' VALUE=""><P>
+<label> Max:</label> <INPUT TYPE="text" NAME="textMax" size='4' VALUE=""><P>
+</fieldset>
+<INPUT TYPE="button" NAME="button" Value="Filter" onClick="delimitText(this.form)">
+</FORM>
+
+</div>
+
+<div class='mainCol'>
+<h2> Zapatec Table Example </h2>
+
+<div id="myGrid">
+</div>
+
+<hr>
+</div>
+
+<script>
+var jsonObject = {
+	style: 'border: solid black 1px',
+	headerStyle: '',
+	fields: [
+		{title: 'Date', dataType: 'date'},
+		{title: 'Text', dataType: 'string'},
+		{title: 'Text Insensitive', dataType: 'istring', style: 'font-weight: bold'},
+		{title: 'Integer', dataType: 'integer'}
+	],
+	rows: [
+		{cells: [{data: '10/03/2005'}, {data: 'dhtml aaa'}, {data: 'http://www.zapatec.com/website/main/products/ZZZZZ/'}, {data: 1, style: 'color: #f00'}]},
+		{cells: [{data: '10/02/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/aaaa/'}, {data: 46}],
+		 style: 'background: #ccc'},
+		{cells: [{data: '10/01/2005'}, {data: 'dhtml bbb'}, {data: 'http://www.zapatec.com/website/main/products/bbbbb/'}, {data: 111}]},
+		{cells: [{data: '09/30/2005'}, {data: 'dhtml 1111'}, {data: 'http://www.zapatec.com/website/main/products/CCCCCC/'}, {data: 44}]},
+		{cells: [{data: '09/29/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/aaaaaa/'}, {data: 46}]},
+		{cells: [{data: '09/28/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/JJJJJ/'}, {data: 46}]},
+		{cells: [{data: '09/27/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/kkkkkk/'}, {data: 46}]},
+		{cells: [{data: '09/26/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 46}]},
+		{cells: [{data: '09/25/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 45}]},
+		{cells: [{data: '09/24/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 45}]},
+		{cells: [{data: '09/23/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 47}]},
+		{cells: [{data: '09/22/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 47}]},
+		{cells: [{data: '09/21/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 47}]},
+		{cells: [{data: '09/20/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 47}]},
+		{cells: [{data: '09/19/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 47}]},
+		{cells: [{data: '09/18/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 45}]},
+		{cells: [{data: '09/17/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 45}]},
+		{cells: [{data: '09/16/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 44}]},
+		{cells: [{data: '09/15/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 24}]},
+		{cells: [{data: '09/14/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 23}]},
+		{cells: [{data: '09/13/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 25}]},
+		{cells: [{data: '09/12/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 26}]},
+		{cells: [{data: '09/11/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 27}]},
+		{cells: [{data: '09/10/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 27}]},
+		{cells: [{data: '09/09/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 25}]},
+		{cells: [{data: '09/08/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 25}]},
+		{cells: [{data: '09/07/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 25}]},
+		{cells: [{data: '09/06/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 26}]},
+		{cells: [{data: '09/05/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 27}]},
+		{cells: [{data: '09/04/2005'}, {data: 'dhtml menu'}, {data: 'http://www.zapatec.com/website/main/products/prod2/'}, {data: 27}]}
+	]
+};
+
+var myTable = new Zapatec.Grid({
+	source: jsonObject,
+	sourceType: 'json',
+	container: 'myGrid',
+	theme: 'default',
+	filterOut: [{container: 'myFilterOut', column: 1}]
+});
+</script>
+
+</body>
+</html>

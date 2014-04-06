@@ -1,0 +1,76 @@
+body{
+	background-color:#93AEBD;
+	text-align:left;
+	line-height:1;
+}
+
+h1{
+	text-align:left;
+	color:#800000;
+}
+
+table{
+	empty-cells:show;
+}
+
+th{
+	font-weight:normal;
+}
+
+td{
+	line-height:1;
+}
+
+small{
+	font-size: 75%;
+}
+
+div.error{
+	color:red;
+}
+
+div.prompt{
+	font-weight:bold;
+	color:black;
+}
+
+div.message{
+	color:green;
+}
+
+div.warning{
+	color:red;
+	font-weight:bold;
+}
+
+td.peso{
+	text-align:right;
+}
+
+input.peso{
+	text-align:right;
+}
+
+td.grade{
+	text-align:right;
+}
+
+input.grade{
+	text-align:right;
+}
+
+td.class{
+	background-color:#a8a8ff;
+}
+
+form{
+	margin:0
+}
+
+div#scrolllist{
+	border-style:solid;
+	border-width:thin;
+}
+
+#goback{
+}

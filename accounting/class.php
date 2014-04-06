@@ -1,0 +1,394 @@
+<?php
+	session_start();
+	require_once("../include/auth.inc");
+	require_once("../include/util.inc");
+	require_once("../include/semester.inc");
+	require_once("../include/course.inc");
+	require_once("../include/teacher.inc");
+	require_once("../include/class.inc");
+	require_once("../include/classschedule.inc");
+	require_once("../include/feeelement.inc");
+	auth_check( $_SESSION["office"] );
+
+$val = array(
+	//"sy_id"				=> "SchoolYear",
+	//"department_id"		=> "Department",
+	"subject"			=> "Subject",
+	"subject_code"		=> "Subject Code",
+	"course_id"			=> "Course",
+	"year_level"		=> "YearLevel",
+	"section_flag"		=> "Section",
+	"teacher_id"		=> "Teacher",
+	"unit"				=> "Units",
+	"flags[]"			=> "Options (Additional fee)",
+	"max_student_reg"	=> "Max regular students",
+	"max_student_nreg"	=> "Max irregular students",
+);
+
+function print_edit_form( $class )
+{
+	global $val;
+
+	echo '<input type="hidden" name="sy_id" value="' . $_SESSION["sy_id"] . '">';
+	echo '<input type="hidden" name="department_id" value="' . $_SESSION["department_id"] . '">';
+
+	echo "<table border=\"1\">";
+	foreach( $val as $idx => $name ) {
+		echo "<tr>";
+		if( $idx=="year_level" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . mkhtml_select($idx,get_yearlevel_array(),$class[$idx]) . "</td>";
+		} else if( $idx=="section_flag" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>";
+			foreach( get_section_array() as $i=>$j ) {
+				if( $i>0 ) echo '<input type="checkbox" name="sections[]" value="' . (0x01<<($i-1)) . '"' . (($class[$idx]&(0x01<<($i-1))) ? ' checked' : '') . '>'. $j . ' ';
+			}
+			echo "</td>";
+		} else if( $idx=="flags[]" ) {
+			$classflag_array = get_classflag_array( $_SESSION["department_id"],true );
+			if( ! isset($class["flag"]) ) {
+				foreach( $classflag_array as $i=>$j ) {
+					if( $j["defaultval"]>0 ) $class["flag"] |= (0x01<<($i-1));
+				}
+			}
+			echo "<td>" . $name . "</td><td>";
+			foreach( $classflag_array as $i=>$j ) {
+				echo '<input type="checkbox" name="' . $idx . '" value="' . (0x01<<($i-1)) . '"';
+				if(	$class["flag"] & (0x01<<($i-1)) ) echo " checked";
+				echo '>' . $j["title"] . ' (' . $j['short_name'] . ')<br>';
+			}
+
+			$feeelement_array = get_feeelement_array(null,FEEFLAGGRP_COMPULSORY);
+			echo '<input type="checkbox" name="fee"' . ($class['feeelement_id']>0 ? ' checked' : '') . ' onClick="funcOnFee()">Specific fee';
+			echo mkhtml_select('feeelement_id',$feeelement_array,isset($class['feeelement_id'])?$class['feeelement_id']:1);
+			echo '<input type="text" name="fee_amount" value="' . mkstr_peso($class['fee_amount']) . '" class="peso" size="10"><br>';
+			
+			echo "</td>";
+		} else if( $idx=="unit" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"${idx}\" value=\"${class[$idx]}\" size=\"3\">";
+			echo "<input type=\"checkbox\" name=\"exempt\" value=\"1\"";
+			if( $class["exempt"]>0 ) echo " checked";
+			echo ">Exempt from tuition fee</td>";
+		} else if( $idx=="teacher_id" ) {
+			$default = $class[$idx];
+			if( $default=='' ) $default=0;
+			unset( $ar );
+			//$ar = get_teacher_array($_SESSION["department_id"]);
+			$ar = get_teacher_array(0,0,true);
+			$ar[0] = ' - none - ';
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . mkhtml_select($idx,$ar,$default) . "</td>";
+		} else if( $idx=="course_id" ) {
+			$default = $class[$idx];
+			if( $default=='' ) $default = 0;
+			if( $class["major_ignore"]>0 ) $default *= -1;
+			unset( $ar );
+			$ar = get_course_array_virtual(0,$_SESSION["department_id"]);
+			$ar[0] = ' - free - ';
+			echo '<td>' . $name . '</td>';
+			echo '<td>' . mkhtml_select($idx,$ar,$default) . '</td>';
+		} else if( $idx=="subject" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"${idx}\" value=\"${class[$idx]}\" size=\"50\"></td>";
+		} else {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"${idx}\" value=\"${class[$idx]}\"></td>";
+		}
+		echo "</tr>\n";
+	}
+	echo "</table>";
+
+	echo '<script type="text/javascript">document.mainform.subject.focus();</script>';
+}
+
+function print_edit_info( $class )
+{
+	global $val;
+
+	echo "<table border=\"1\">";
+	foreach( $val as $idx => $name ) {
+		echo "<tr>";
+		if( $idx=="year_level" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_yearlevel( $class[$idx] ) . "</td>";
+		} else if( $idx=="section_flag" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_section_flag( $class[$idx] ) . "</td>";
+		} else if( $idx=="teacher_id" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_teacher_name( $class[$idx] ) . "</td>";
+		} else if( $idx=="flags[]" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . mkstr_neat( get_classflag_string( $class["flag"] ) ) . "</td>";
+		} else if( $idx=="course_id" ) {
+			echo '<td>' . $name . '</td>';
+			echo '<td>' . get_course_from_course_id( $class[$idx] ) . '</td>';
+		} else {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . $class[$idx] . "</td>";
+		}
+		echo "</tr>\n";
+	}
+	echo "</table>";
+}
+
+?>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script type="text/JavaScript" src="../option/option.js"></script>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<title> Class Registration</title>
+<script type="text/JavaScript">
+function funcOnFee() {
+	var fee = document.mainform.elements['fee'];
+	if( fee==null ) return;
+	if( fee.checked ) {
+		document.mainform.feeelement_id.style.visibility="visible";
+		document.mainform.fee_amount.style.visibility="visible";
+	} else {
+		document.mainform.feeelement_id.style.visibility="hidden";
+		document.mainform.fee_amount.style.visibility="hidden";
+	}
+}
+</script>
+</head>
+
+<body onLoad="optionOnLoad();funcOnFee()" onResize="optionOnResize()">
+<?php
+	print_heading();
+?>
+<?php
+	$sy_id = $_SESSION["sy_id"];
+	$department_id = $_SESSION["department_id"];
+	$str_schoolyear = lookup_schoolyear($sy_id);
+
+	print_title( get_office_name($_SESSION["office"]), ($_SESSION["office"]==AUTH_ACCOUNTING ? "Class lists" : "Class Registration"), $str_schoolyear );
+
+	echo '<form method="POST" name="mainform">';
+
+	if( isset($_REQUEST["search"]) ||
+		((! isset($_REQUEST["class_id"])) && (! isset($_REQUEST["add"]))) ) {
+		if( $_SESSION["department_id"]==0 ) {
+			$department_id = $_REQUEST["department_id"];
+			echo 'Department' . mkhtml_select( "department_id",get_department_array(),$department_id ) . '<br>';
+		}
+		$course_array[0] = ' - all - ';
+		$course_array += get_course_array(0,$department_id);
+		$yearlevel_array = get_yearlevel_array();
+		$yearlevel_array[0] = ' - all - ';
+		if( ! isset($_REQUEST["year_level"]) ) $_REQUEST["year_level"] = -1;
+		echo '<nobr>Course' . mkhtml_select( "course_id",$course_array,$_REQUEST["course_id"] ) . '</nobr>';
+		echo '<nobr>Year level' . mkhtml_select( "year_level",$yearlevel_array,$_REQUEST["year_level"] ) . '</nobr>';
+		$section_array = get_section_array();
+		$section_array[0] = ' - all - ';
+		echo '<nobr>Section' . mkhtml_select( "section",$section_array,$_REQUEST["section"] ) . '</nobr>';
+		$classflag_array[0] = ' - all - ';
+		$classflag_array += get_classflag_array($_SESSION["department_id"]);
+		echo '<nobr>Option' . mkhtml_select( "classflag",$classflag_array,$_REQUEST["classflag"] ) . '</nobr>';
+		echo '<input type="submit" name="search" value="Search">';
+		echo '<p />';
+
+		if( isset($_REQUEST["course_id"]) ) {
+			$result = false;
+			$list = new model_class;
+			$list->connect();
+			$obj_schedule = new model_classschedule;
+			$obj_schedule->connect();
+			$course_id = $_REQUEST["course_id"];
+			$result = $list->get_list($sy_id,$department_id,$course_id,$_REQUEST["year_level"],$_REQUEST["section"],$_REQUEST["classflag"]);
+			if( $result != false ) {
+				echo '<div' . ($list->get_numrows()>2 ? ' id="scrolllist"' : '') . '>';
+				echo "<table border=\"1\">";
+				echo "<tr>";
+				echo "<th>&nbsp;</th>";
+				echo "<th>Subject</th><th>Code</th><th>Course</th><th>YearLevel</th><th>Sec.</th><th>Teacher</th><th>Units</th><th>Options</th><th>reg,ireg</th><th>Schedule</th>";
+				echo "</tr>";
+				for( $i=0; $i<$list->get_numrows(); $i++ ) {
+					$dat = $list->get_fetch_assoc($i);
+					$schedule_ar = $obj_schedule->get_schedule_array($dat["class_id"]);
+					$schedule_str = '';
+					for( $j=0; $j<count($schedule_ar); $j++ ) {
+						$schedule_str .= $schedule_ar[$j][1] . ' ' . $schedule_ar[$j][2] . ' ' . $schedule_ar[$j][0] . '<br>';
+					}
+					printf( "<tr>" );
+					printf( "<td><input type=\"radio\" name=\"class_id\" value=\"%s\"></td>", $dat["class_id"] );
+					printf( "<td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td align=\"center\">%s</td> <td><small>%s</small></td> <td align=\"center\">%s</td> <td><small>%s</small></td>\n",
+						mkstr_neat($dat["subject"]),
+						mkstr_neat($dat["subject_code"]),
+						mkstr_neat( $dat['major_ignore'] ? strtok($course_array[$dat["course_id"]],' ') : $course_array[$dat["course_id"]] ),
+						lookup_yearlevel($dat["year_level"]),
+						mkstr_neat(lookup_section_flag($dat["section_flag"])),
+						mkstr_neat(lookup_teacher_name($dat["teacher_id"])),
+						mkstr_neat($dat["unit"]) . ($dat["exempt"]>0 ? "*" : ""),
+						mkstr_neat( get_classflag_string( $dat["flag"] ) . ($dat['feeelement_id']>0 ? '<br><nobr>' . lookup_feeelement_title($dat['feeelement_id']) . '(P' . mkstr_peso($dat['fee_amount']) . ')</nobr>' : '' ) ),
+						($dat["max_student_reg"] . ',' . $dat["max_student_nreg"]),
+						mkstr_neat($schedule_str)
+					);
+					printf( "</tr>" );
+				}
+				echo '</table>';
+				echo '</div>';
+				echo "<div style=\"text-align:right\">* asterisk in unit means it is exempt from tuition.</div>";
+				if( $_SESSION["department_id"]>0 ) {
+					if( $list->get_numrows()>0 ) {
+						echo '<input type="submit" name="edit" value="Edit">';
+						echo '<input type="submit" name="del" value="Delete">';
+						echo '<input type="button" value="Edit Schedule" onClick="document.mainform.action=\'classschedule.php\';document.mainform.submit()">';
+					}
+				}
+			}
+			$list->close();
+		}
+		
+		if( $_SESSION["department_id"]>0 ) {
+			echo '<br><input type="submit" name="add" value="Add new class">';
+		}
+	} else if( isset($_REQUEST["add"]) ) {
+		if( !isset($_REQUEST["confirm"]) ) {
+			echo '<div class="prompt">Enter class details</div>';
+			// for new record
+			print_edit_form($class);
+			echo '<input type="submit" name="add" value="Add">';
+			echo '<input type="hidden" name="confirm">';
+		} else {
+			$data = new model_class();
+			$data->connect( auth_get_writeable() );
+			if( $_REQUEST["teacher_id"]==0 ) unset($_REQUEST["teacher_id"]);
+			if( $_REQUEST["course_id"]==0 ) unset($_REQUEST["course_id"]);
+			if( $_REQUEST["course_id"]<0 ) {
+				$_REQUEST["course_id"] = abs($_REQUEST["course_id"]);
+				$_REQUEST["major_ignore"] = 1;
+			}
+			$_REQUEST["flag"] = 0;
+			if( isset($_REQUEST["flags"]) ) {
+				foreach( $_REQUEST["flags"] as $i=>$j ) $_REQUEST["flag"] |= $j;
+			}
+			$_REQUEST["section_flag"] = 0;
+			if( isset($_REQUEST["sections"]) ) {
+				foreach( $_REQUEST["sections"] as $i=>$j ) $_REQUEST["section_flag"] |= $j;
+			}
+			if( ! isset($_REQUEST['fee']) ) {
+				unset($_REQUEST['feeelement_id']);
+				unset($_REQUEST['fee_amount']);
+			} else {
+				$_REQUEST['fee_amount'] = retrieve_peso($_REQUEST['fee_amount']);
+			}
+			if( $data->add( $_REQUEST )==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				echo '<div class="message">Added successfully</div>';
+				$id = $data->get_id_by_cond( $_REQUEST );
+				if( $id > 0 ) {
+					print_hidden( array('class_id'=>$id) );
+					echo '<input type="button" value="Proceed to Schedule" onClick="document.mainform.action=\'classschedule.php\';document.mainform.submit()">';
+				}
+			}
+		}
+	} else if( isset($_REQUEST["edit"]) ) {
+		$data = new model_class();
+		$data->connect( auth_get_writeable() );
+		if( ! isset($_REQUEST["confirm"]) ) {
+			if( $data->get_by_id($_REQUEST["class_id"])==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				echo '<div class="prompt">Edit class details</div>';
+				$class = $data->get_fetch_assoc(0);
+				print_edit_form($class);
+				echo "<input type=\"hidden\" name=\"class_id\" value=\"${_REQUEST["class_id"]}\">";
+				echo '<input type="submit" name="edit" value="Update">';
+				echo '<input type="hidden" name="confirm">';
+			}
+		} else {
+			if( $_REQUEST["teacher_id"]==0 ) $_REQUEST["teacher_id"] = 'NULL';
+			if( $_REQUEST["course_id"]==0 ) $_REQUEST["course_id"] = 'NULL';
+			if( $_REQUEST["course_id"]<0 ) {
+				$_REQUEST["course_id"] = abs($_REQUEST["course_id"]);
+				$_REQUEST["major_ignore"] = 1;
+			} else {
+				$_REQUEST["major_ignore"] = '0';
+			}
+			if( ! isset($_REQUEST["exempt"]) ) $_REQUEST["exempt"] = 'NULL';
+			$_REQUEST["flag"] = 0;
+			if( isset($_REQUEST["flags"]) ) {
+				foreach( $_REQUEST["flags"] as $i=>$j ) $_REQUEST["flag"] |= $j;
+			}
+			if( $_REQUEST["flag"]==0 ) $_REQUEST["flag"] = "0";
+			$_REQUEST["section_flag"] = 0;
+			if( isset($_REQUEST["sections"]) ) {
+				foreach( $_REQUEST["sections"] as $i=>$j ) $_REQUEST["section_flag"] |= $j;
+			}
+			if( $_REQUEST["section_flag"]==0 ) $_REQUEST["section_flag"] = "0";
+			if( ! isset($_REQUEST['fee']) ) {
+				$_REQUEST['feeelement_id'] = 'NULL';
+				$_REQUEST['fee_amount'] = 'NULL';
+			} else {
+				$_REQUEST['fee_amount'] = retrieve_peso($_REQUEST['fee_amount']);
+			}
+			if( $data->update( $_REQUEST )==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				echo '<div class="message">Updated successfully</div>';
+			}
+		}
+		$data->close();
+	} else if( isset($_REQUEST["del"]) ) {
+		$data = new model_class();
+		$data->connect( auth_get_writeable() );
+		if( ! isset($_REQUEST["confirm"]) ) {
+			if( $data->get_by_id($_REQUEST["class_id"])==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				echo '<div class="prompt">Delete following class?</div>';
+				$class = $data->get_fetch_assoc(0);
+				print_edit_info($class);
+				echo "<input type=\"hidden\" name=\"class_id\" value=\"${_REQUEST["class_id"]}\">";
+				echo '<input type="submit" name="del" value="Delete">';
+				echo '<input type="hidden" name="confirm">';
+			}
+		} else {
+			$class_id = $_REQUEST["class_id"];
+			$schedule = new model_classschedule();
+			$schedule->connect( auth_get_writeable() );
+			$data->begin_transaction();
+			if( $schedule->del_by_class_id( $class_id )==false ) {
+				echo '<div class="error">' . $schedule->get_errormsg() . '</div>';
+				$data->rollback();
+			} else if( $data->del( $class_id )==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '<br>Maybe students are already enrolled in this class.</div>';
+				$data->rollback();
+			} else {
+				echo '<div class="message">Deleted successfully</div>';
+				$data->end_transaction();
+			}
+		}
+		$data->close();
+	}
+	echo "</form>";
+
+	print_footer();
+
+	if( (! isset($_REQUEST["class_id"])) && (! isset($_REQUEST["add"])) ) {
+		echo "<form action=\"index.php\" method=\"POST\" id=\"goback\">";
+		echo "<input type=\"submit\" value=\"Go back\">";
+		echo '<input type="hidden" name="sy_id" value="' . $sy_id . '">';
+		echo '<input type="hidden" name="department_id" value="' . $department_id . '">';
+		echo "</form>";
+	} else {
+		echo '<form method="POST" id="goback">';
+		echo '<input type="submit" value="Go back">';
+		print_hidden( array("course_id"=>intval($_REQUEST["course_id"])) );
+		print_hidden( $_REQUEST,array("year_level","section") );
+		echo '</form>';
+	}
+?>
+
+</body>
+
+</html>
+

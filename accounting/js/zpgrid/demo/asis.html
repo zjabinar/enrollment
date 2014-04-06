@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+  <script type="text/javascript" src="../utils/utils.js"></script>
+  <script type="text/javascript" src="../utils/transport.js"></script>
+  <script type="text/javascript" src="../utils/zpwidget.js"></script>
+  <script type="text/javascript" src="../src/zpgrid.js"></script>
+  <link href="../themes/layout.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/zpcal.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/template.css" rel="stylesheet" type="text/css" />
+  <link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico" />
+  <title>Zapatec AJAX Grid Widget - Show Data AS IS</title>
+  
+	<script type="text/javascript" src="../utils/parse.js"></script>
+	<script type="text/javascript" src="../utils/word2num.js"></script>
+
+</head>
+<body>
+
+	<table class='zpStandard'><tr><td>
+
+	<div class="topMenuHeader">
+		<div class="logo">
+			<a href='http://www.zapatec.com'><img src='../website/images/logoNew.gif' alt='Zapatec logo' border='0'></a>
+		</div>
+		<div class="btn1">
+			<a href="https://www.zapatec.com/zadmin/buy.jsp">
+				<img src="../website/images/buttonBuy.png" alt='Buy Zapatec Forms' border="0">
+			</a>
+		</div>
+
+		<div class="btn1">
+			<a href="http://www.zapatec.com/website/main/pricing.jsp">
+				<img src="../website/images/buttonPricing.png" alt='Pricing for Zapatec Forms' border="0">
+			</a>
+		</div>
+	</div>
+
+	<div class="pageMain">
+	<a href="yahoo.html" style="float:left; margin-left:2em; margin-top:.5em;" accesskey="P">
+			<img border="0" src="../website/images/previous.png" alt="Previous Zapatec Javascript Form Example"></a>
+	<a href="splice.html" style="float:right; margin-right:2em; margin-top:.5em;" accesskey="N">
+			<img border="0" src="../website/images/next.png" alt="Next Zapatec Javascript Form Example"></a>
+		<div class='zpCalSubHeader' style='text-align:center'>Show Data AS IS</div>
+
+		<br/>	
+
+
+With these features, you can preserve your original data format and still use the powerful Zapatec grid features.  In other words, all the Zaptec Grid features can be applied while your data presentation is preserved.  This is very useful to migrate your old style tables to the feature rich Zapatec Grid.
+<ul>
+	<li>Data displayed AS IS, see option <b>show_asis</b>.  This feature allows you to present the data in your original format.  Notice how you can present the data in the original format yet all the grid features are still in effect.  For example, each column is sorted based on the internal field type yet presented in its original format.</li>
+	<li>Data conversion, see option <b>convert</b>.  This option will define the function to convert the grid cell from the original value to the grid type value.  For example, the Hours column can have an original format of '# week # days # hours'.  This convert function will convert this string to a number (hours). </li>
+	<li>Dynamic Style for each cell, see option <b>funcStyle</b>.  Price column will display negative numbers in red and right aligned.</li>
+	<li>Easy unit of measurement word translation, see function convert.</li>
+	<li>Use the Show Both? and the Show Converted? buttons to change the grid data presentation.</li>
+	<li>With the Zapatec Grid you can automatically convert the grid into a <b>flatfile</b> format.  For example, the user can convert the grid into CSV format to easily import into Excel.</li>
+</ul>
+
+<div id="id-grid-gdp">
+<table id=id-table-gdp cellspacing="0" cellpadding="3">
+<tr>
+
+<td class=zpGridTypeFloat>Disk Size</td>
+<td class=zpGridTypeInt>Hours</td>
+<td class=zpGridTypeFloat>Price</td>
+<td class=zpGridTypeDate>Date</td>
+<td class=zpGridTypeInt>Weight (oz)</td>
+</tr>
+
+<tr>
+<td>20 MB</td>
+<td>2 days 1 hour</td>
+<td>-10 hundred</td>
+<td>Mar 14, 2006</td>
+<td>1 lb 2 oz</td>
+</tr>
+<tr>
+<td>15 MB</td>
+<td>1 week, 2 days, 1 hour</td>
+<td>9 hundred</td>
+<td>Mar 15, 2006</td>
+<td>2 lb 1 oz</td>
+</tr>
+<tr>
+<td>10 GB</td>
+<td>1 week, 1 day, 1 hour</td>
+<td>9 hundred 28 cents</td>
+<td>Apr 1, 2006</td>
+<td>15 oz</td>
+</tr>
+<tr>
+<td>50 MB</td>
+<td>1 week</td>
+<td>-50 cents</td>
+<td>Apr 1, 2006</td>
+<td>3 lb</td>
+</tr>
+<tr>
+<td>25 GB</td>
+<td>1 hour</td>
+<td>0 cent</td>
+<td>Apr 1, 2006</td>
+<td>5 oz</td>
+</tr>
+
+</table>
+</div> <!-- id-grid-dbp -->
+
+<script type=text/javascript>
+
+// Column numbers
+var FLD_SIZE=0
+var FLD_HOURS=1
+var FLD_PRICE=2
+var FLD_DATE=3
+var FLD_WEIGHT=4
+
+
+function formatCurrency(num) {
+num = num.toString().replace(/\$|\,/g,'');
+if(isNaN(num)) num = "0";
+sign = (num == (num = Math.abs(num)));
+num = Math.floor(num*100+0.50000000001);
+cents = num%100;
+num = Math.floor(num/100).toString();
+if(cents<10) cents = "0" + cents;
+for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+	num = num.substring(0,num.length-(4*i+3))+','+ num.substring(num.length-(4*i+3));
+
+return (((sign)?'':'-') + '$' + num + '.' + cents);
+}
+
+/*-----------------------------------------------------------------------------------
+	Dynamically change the style of a cell based on the contents.
+	iRow - current row in grid
+	iCol - current col in grid
+	arrRows - array of Zapatec.GridRow, could be filtered
+	return undefined if NO change to style
+	return the inline style that should be applied to this cell
+
+	This function will set any negative number to RED.
+	Also, all number aligned right.
+*/
+	function myStyle(iRow, iCol, arrRows)
+	{
+		if (iCol != FLD_PRICE)
+			return undefined 
+
+		var strStyle;
+		if (arrRows[iRow].cells[iCol].data.mixedValue < 0)
+			return 'color:red; text-align:right;'
+
+		return "text-align:right;"
+	}
+
+/*-----------------------------------------------------------------------------------
+  Conversion function for this cell.
+  This gets called in Zapatec.GridField.prototype.newCell.
+  iCol - current column number
+  strNum - Original value 
+  return undefined if no conversion, else return the value the cell should be
+*/
+var word2num=new Zapatec.word2num()
+
+	function convert(iCol, strNum) {
+	var strVal=strNum
+	var num, strOut
+	var p=new Zapatec.Parse(strNum, /\s/)
+
+		switch(iCol) {
+			case FLD_SIZE:  return word2num.val2num(strNum, /\s+/, word2num.arrWord2Num_computer)
+			case FLD_HOURS: return word2num.val2num(strNum, /,?\s+,?/, word2num.arrWord2Num_hour)
+			case FLD_PRICE: return word2num.val2num(strNum, /\s+/, word2num.arrWord2Num_money)
+			case FLD_WEIGHT: 
+				// Create a custom array for this unit of measurement
+				var arrWeight=[]
+				arrWeight['lb']=16
+				arrWeight['oz']=1
+				return word2num.val2num(strNum, /\s+/, arrWeight)
+
+			default:return undefined;
+			}
+	}
+
+
+	// Function to visually present the data
+	// Does NOT effect sorting, just visual
+	function show_data(iRow, iCol, arrRows)
+	{
+		var value=arrRows[iRow].cells[iCol].data.mixedValue;
+
+		if (iCol==FLD_PRICE)
+			return formatCurrency(value)
+
+		return arrRows[iRow].cells[iCol].data.origValue;
+	}
+
+	var grid = new Zapatec.Grid({
+
+	convert: convert,
+	// Define conversion function for cells */
+	show_asis:{bBoth:false, funcShow:show_data},
+	funcStyle:myStyle,
+   // Where to put the table?
+   // NOTE: table must be enclosed in this div or it will be displayed
+   container: 'id-grid-gdp',
+   // Where is the data coming from?  Table ID
+   source: 'id-table-gdp',
+   // Source of data is HTML (table)
+   sourceType: 'html',
+   sortColumn: FLD_SIZE,
+	theme: 'default',
+   rowsPerPage: 10
+	});
+
+  var boolShowBoth = false;
+  var boolShowConverted = false;
+
+</script>
+
+<b>
+<span style='font-size:12px'>Show Both? </span>
+<input type=checkbox name=cbBoth value="Show Both?" 
+title='Click ON to show Both Original and Converted data, OFF to show based on Show Converted.' 
+onclick="
+  boolShowBoth = this.checked;
+  if (boolShowBoth) {
+    grid.config.show_asis = {bBoth:true, funcShow:show_data};
+  } else if (boolShowConverted) {
+    grid.config.show_asis = false;
+  } else {
+    grid.config.show_asis = {bBoth:false, funcShow:show_data};
+  }
+  grid.show();
+">
+
+<span style='font-size:12px'>Show Converted? </span>
+<input type=checkbox 
+title='Click ON to show Converted data, OFF to show AS IS (Original) data.'
+onclick="
+  boolShowConverted = this.checked;
+  if (boolShowBoth) {
+    grid.config.show_asis = {bBoth:true, funcShow:show_data};
+  } else if (boolShowConverted) {
+    grid.config.show_asis = false;
+  } else {
+    grid.config.show_asis = {bBoth:false, funcShow:show_data};
+  }
+  grid.show();
+">
+	Flatfile Converted?<input type=checkbox 
+	title='Flatfile grid in Converted CSV ?  Results are shown in a new window.'
+	onclick="flatfile(this, 2, 'Converted')">
+
+	Flatfile As Is?<input type=checkbox 
+	title='Flatfile grid in As Is CSV ?  Results are shown in a new window.'
+	onclick="flatfile(this, 3, 'As Is')">
+
+	<script type=text/javascript>
+	function flatfile(cb, intMode, strDesc) {
+		cb.checked=false
+		var strFlatfile=grid.flatfile(',', '\n', intMode)
+		var win=window.open('','flatfile', 'height=250,width=650,screenX=600,screenY=550');
+		win.focus();
+		win.document.open('text/html', 'replace');
+		win.document.write('<HTML><HEAD><TITLE>Flatfile of Grid in CSV format - '+strDesc+'</TITLE></HEAD><BODY>\n');
+		win.document.write('Flatfile of Grid in CSV format - ' + strDesc + ':<br>')
+		win.document.write('<textarea style=\'border:medium solid black;\' wrap=off rows=' + grid.rows.length + ' cols=40>')
+		win.document.write(strFlatfile)
+		win.document.write('</textarea>')
+		win.document.write('</BODY></HTML>\n');
+		win.document.close();
+		}
+	</script>
+</b>
+</div>
+</div>
+
+	<br/><br/><br/>
+	<div id="divFooter" class="footer" style='text-align:center; margin-top:2em'>
+		&copy; 2004 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+	</div>
+</td></tr></table>
+</body>
+</html>

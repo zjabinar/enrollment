@@ -1,0 +1,29 @@
+/**
+ * \file make.jse
+ * JScript that generates demo pages from m4 scripts in the current directory.
+ * Requires M4 for Windows (http://gnuwin32.sourceforge.net/packages/m4.htm)
+ * to be installed on the computer.
+ *
+ * Copyright (c) 2004-2005 by Zapatec, Inc.
+ * http://www.zapatec.com
+ * 1700 MLK Way, Berkeley, California,
+ * 94709, U.S.A.
+ * All rights reserved.
+ *
+ * $Id: make.jse 1123 2005-11-29 19:11:10Z alex $
+ */
+
+var objWSHShell = WScript.CreateObject('WScript.Shell');
+var objFileSystem = new ActiveXObject('Scripting.FileSystemObject');
+var objEnum = new Enumerator(objFileSystem.GetFolder('.').files);
+for (objEnum.moveFirst(); !objEnum.atEnd(); objEnum.moveNext()) {
+  var objFile = objEnum.item();
+  var strFileName = objFile.name;
+  if (strFileName.match(/\.m4$/i)) {
+//    WScript.echo(strFileName);
+    strFileName = strFileName.replace(/\.m4$/i, '');
+    objWSHShell.Run('cmd /C "C:\\Program Files\\GnuWin32\\bin\\m4" ' +
+     strFileName + '.m4 > ' + strFileName + '.html', 0);
+  }
+}
+WScript.echo('Done');

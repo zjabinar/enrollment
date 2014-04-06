@@ -1,0 +1,530 @@
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+  <script type="text/javascript" src="../utils/utils.js"></script>
+  <script type="text/javascript" src="../utils/transport.js"></script>
+  <script type="text/javascript" src="../utils/zpwidget.js"></script>
+  <script type="text/javascript" src="../src/zpgrid.js"></script>
+  <link href="../themes/layout.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/zpcal.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/template.css" rel="stylesheet" type="text/css" />
+  <link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico" />
+  <title>Zapatec AJAX Grid Widget - Zapatec AJAX Grid - Stock Performance Example</title>
+  
+</head>
+<body>
+
+	<table class='zpStandard'><tr><td>
+
+	<div class="topMenuHeader">
+		<div class="logo">
+			<a href='http://www.zapatec.com'><img src='../website/images/logoNew.gif' alt='Zapatec logo' border='0'></a>
+		</div>
+		<div class="btn1">
+			<a href="https://www.zapatec.com/zadmin/buy.jsp">
+				<img src="../website/images/buttonBuy.png" alt='Buy Zapatec Forms' border="0">
+			</a>
+		</div>
+
+		<div class="btn1">
+			<a href="http://www.zapatec.com/website/main/pricing.jsp">
+				<img src="../website/images/buttonPricing.png" alt='Pricing for Zapatec Forms' border="0">
+			</a>
+		</div>
+	</div>
+
+	<div class="pageMain">
+	
+	<a href="phone.html" style="float:right; margin-right:2em; margin-top:.5em;" accesskey="N">
+			<img border="0" src="../website/images/next.png" alt="Next Zapatec Javascript Form Example"></a>
+		<div class='zpCalSubHeader' style='text-align:center'>Zapatec AJAX Grid - Stock Performance Example</div>
+
+		<br/>	
+
+
+
+<script type="text/javascript" >
+var myTable;
+</script>
+
+A basic example showing a grid of the performance of the stock of various companies. 
+<ul>
+<li>Sorted initially by first column in descending order.</li>
+<li>
+You can click on the header of each column and sort in ascending order. 
+</li>
+<li>
+Clicking again sorts in descending order.
+</li>
+<li>
+You can designate the data type of the columns as text, integer, date, or
+floating point and the grid will sort your data accordingly.
+</li>
+<li>
+The grid is constructed from a standard HTML table.
+</li>
+</ul>
+
+<div class='mainCol'>
+
+<div id="myGrid">
+<table id='myTab'>
+<tr>
+	<th>
+		Symbol
+	</th>
+	<th>
+		Name
+	</th>
+	<th class='zpGridTypeFloat'>
+		Mkt Cap
+	</th>
+	<th class='zpGridTypeFloat'>
+		Last
+	</th>
+	<th class='zpGridTypeFloat'>
+		P/E
+	</th>
+	<th class='zpGridTypeInt'>
+		Volume
+	</th>
+	<th>
+		Tick Trend
+	</th>
+</tr>
+<tr>
+	<td>
+		MSFT
+	</td>
+	<td>
+		MICROSOFT CP
+	</td>
+	<td>
+		283.0B
+	</td>
+	<td>
+		26.59
+		<td>
+			22.58
+		</td>
+		<td>
+			91,307,152	 
+		</td>
+		<td>
+			==-=== 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			IBM
+		</td>
+		<td>
+			INTL BUSINESS MAC
+		</td>
+		<td>
+			131.4B
+		</td>
+		<td>
+			83.22
+		</td>
+		<td>
+			16.11
+		</td>
+		<td>
+			6,574,200	
+		</td>
+		<td>
+			=++=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			INTC
+		</td>
+		<td>
+			INTEL CP
+		</td>
+		<td>
+			156.6B
+		</td>
+		<td>
+			25.97
+		</td>
+		<td>
+			19.40
+		</td>
+		<td>
+			26,452,116	
+		</td>
+		<td>
+			-=-=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			GOOG
+		</td>
+		<td>
+			GOOGLE
+		</td>
+		<td>
+			127.7B
+		</td>
+		<td>
+			432.04
+		</td>
+		<td>
+			94.45
+		</td>
+		<td>
+			7,550,670	
+		</td>
+		<td>
+			-+==== 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			WMT
+		</td>
+		<td>
+			WAL MART STORES
+		</td>
+		<td>
+			202.3B
+		</td>
+		<td>
+			48.60
+		</td>
+		<td>
+			18.94
+		</td>
+		<td>
+			6,700,900	
+		</td>
+		<td>
+		+-+=-= 
+	</td>
+	</tr>
+	<tr>
+		<td>
+			CSCO
+		</td>
+		<td>
+			CISCO SYS INC
+		</td>
+		<td>
+			106.2B
+		</td>
+		<td>
+			17.29
+		</td>
+		<td>
+			19.97
+		</td>
+		<td>
+			36,233,080	
+		</td>
+		<td>
+			-===== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			LU
+		</td>
+		<td>
+			LUCENT TECH INC
+		</td>
+		<td>
+			12.349B
+		</td>
+		<td>
+			2.77
+		</td>
+		<td>
+			11.43
+		</td>
+		<td>
+			25,293,600	
+		</td>
+		<td>
+			-==+== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			TWX
+		</td>
+		<td>
+			TIME WARNER INC
+		</td>
+		<td>
+			82.528B
+		</td>
+		<td>
+			17.70
+		</td>
+		<td>
+			31.01
+		</td>
+		<td>
+			19,594,300	
+		</td>
+		<td>
+			-=+=+= 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			DELL
+		</td>
+		<td>
+			DELL INC
+		</td>
+		<td>
+			73.053B
+		</td>
+		<td>
+			31.04
+		</td>
+		<td>
+			23.92
+		</td>
+		<td>
+			12,214,480	
+		</td>
+		<td>
+			-+-=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			HD
+		</td>
+		<td>
+			HOME DEPOT INC
+		</td>
+		<td>
+			88.009B
+		</td>
+		<td>
+			41.43
+		</td>
+		<td>
+			16.09
+		</td>
+		<td>
+			4,550,300	
+		</td>
+		<td>
+			+-=+== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			SUNW
+		</td>
+		<td>
+			SUN MICROSYS INC
+		</td>
+		<td>
+			14.750B
+		</td>
+		<td>
+			4.32
+		</td>
+		<td>
+			0
+		</td>
+		<td>
+			23,604,864	
+		</td>
+		<td>
+			+=+=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			ORCL
+		</td>
+		<td>
+			ORACLE CORP
+		</td>
+		<td>
+			63.470B
+		</td>
+		<td>
+			12.32
+		</td>
+		<td>
+			22.15
+		</td>
+		<td>
+			64,662,224	
+		</td>
+		<td>
+			-+-=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			YHOO
+		</td>
+		<td>
+			YAHOO INC
+		</td>
+		<td>
+			57.927B
+		</td>
+		<td>
+			40.83
+		</td>
+		<td>
+			37.79
+		</td>
+		<td>
+			9,548,844	
+		</td>
+		<td>
+			---=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			AMZN
+		</td>
+		<td>
+			AMAZON.COM INC
+		</td>
+		<td>
+			20.400B
+		</td>
+		<td>
+			49.22
+		</td>
+		<td>
+			41.22
+		</td>
+		<td>
+			4,421,863	
+		</td>
+		<td>
+			=+==== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			LVLT
+		</td>
+		<td>
+			LEVEL 3 COMM INC
+		</td>
+		<td>
+			2.069B
+		</td>
+		<td>
+			2.95
+		</td>
+		<td>
+			0
+		</td>
+		<td>
+			3,551,774	
+		</td>
+		<td>
+			==+=== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Q
+		</td>
+		<td>
+			QWEST COMM INTL
+		</td>
+		<td>
+			10.472B
+		</td>
+		<td>
+			5.63
+		</td>
+		<td>
+			0
+		</td>
+		<td>
+			10,956,100	
+		</td>
+		<td>
+			==-+== 
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			EBAY
+		</td>
+		<td>
+			EBAY INC
+		</td>
+		<td>
+			61.716B
+		</td>
+		<td>
+			44.28
+		</td>
+		<td>
+			60.84
+		</td>
+		<td>
+			7,015,031	
+		</td>
+		<td>
+			=+-=== 
+
+		</td>
+	</tr>
+</table>
+</div>
+
+</div>
+
+<script type="text/javascript">
+var myTable = new Zapatec.Grid({
+	source: 'myTab',
+	sourceType: 'html',
+	sortColumn: 0,
+	sortDesc: true,
+	theme: 'default',
+	container: 'myGrid'
+});
+</script>
+</div>
+</div>
+
+	<br/><br/><br/>
+	<div id="divFooter" class="footer" style='text-align:center; margin-top:2em'>
+		&copy; 2004 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+	</div>
+</td></tr></table>
+</body>
+</html>
+

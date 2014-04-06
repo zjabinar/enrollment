@@ -1,0 +1,1482 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!--
+
+Generated from reference.tex by tex2page, v 20051023
+(running on MzScheme 209, unix), 
+(c) Dorai Sitaram, 
+http://www.ccs.neu.edu/~dorai/tex2page/tex2page-doc.html
+
+-->
+<head>
+<title>
+Zapatec AJAX Grid Manual
+</title>
+<link rel="stylesheet" type="text/css" href="reference-Z-S.css" title=default>
+<link rel="stylesheet" type="text/css" href="../website/css/docs.css" title=default>
+<meta name=robots content="index,follow">
+</head>
+<body>
+<div id=slidetitle>
+<p></p>
+<p>
+
+
+
+</p>
+<p>
+
+
+
+
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<h1 class=title>Zapatec AJAX Grid Manual</h1>
+<p></p>
+<div align=center>
+<p></p>
+</div>
+<p></p>
+<p>
+</p>
+<a name="node_sec_Temp_1"></a>
+<h1><a href="#node_toc_node_sec_Temp_1">Contents</a></h1>
+<p><a name="node_toc_start"></a></p>
+<p><b>
+&nbsp; &nbsp; <a name="node_toc_node_sec_1"></a><a href="#node_sec_1">1&nbsp;&nbsp;Get the Zapatec AJAX Grid files</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_1.1"></a><a href="#node_sec_1.1">1.1&nbsp;&nbsp;Download the Zip file</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_1.2"></a><a href="#node_sec_1.2">1.2&nbsp;&nbsp;Unzip zpgrid.zip</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="node_toc_node_sec_2"></a><a href="#node_sec_2">2&nbsp;&nbsp;Quick Startup</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.1"></a><a href="#node_sec_2.1">2.1&nbsp;&nbsp;Set Up Your Grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.1.1"></a><a href="#node_sec_2.1.1">2.1.1&nbsp;&nbsp;Insert The Headers</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.1.2"></a><a href="#node_sec_2.1.2">2.1.2&nbsp;&nbsp;Path Warning</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.2"></a><a href="#node_sec_2.2">2.2&nbsp;&nbsp;Create the Presentation</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.3"></a><a href="#node_sec_2.3">2.3&nbsp;&nbsp;Attach the Zapatec Grid Object to your Presentation</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.4"></a><a href="#node_sec_2.4">2.4&nbsp;&nbsp;Copy your files to your web server</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.5"></a><a href="#node_sec_2.5">2.5&nbsp;&nbsp;Test the grid application</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.6"></a><a href="#node_sec_2.6">2.6&nbsp;&nbsp;Change Included Files</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_2.6.1"></a><a href="#node_sec_2.6.1">2.6.1&nbsp;&nbsp;Use a Different Theme</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="node_toc_node_sec_3"></a><a href="#node_sec_3">3&nbsp;&nbsp;Configuration Options</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1"></a><a href="#node_sec_3.1">3.1&nbsp;&nbsp;Configuration Parameters</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.1"></a><a href="#node_sec_3.1.1">3.1.1&nbsp;&nbsp;source (string OR object, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.2"></a><a href="#node_sec_3.1.2">3.1.2&nbsp;&nbsp;sourceType (string, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.3"></a><a href="#node_sec_3.1.3">3.1.3&nbsp;&nbsp;container (string OR object, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.4"></a><a href="#node_sec_3.1.4">3.1.4&nbsp;&nbsp;theme (string, default &#8221;)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.5"></a><a href="#node_sec_3.1.5">3.1.5&nbsp;&nbsp;themePath (string, default &#8217;../themes&#8217;)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.6"></a><a href="#node_sec_3.1.6">3.1.6&nbsp;&nbsp;textFilter (string, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.7"></a><a href="#node_sec_3.1.7">3.1.7&nbsp;&nbsp;callbackHeaderDisplay (function, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.8"></a><a href="#node_sec_3.1.8">3.1.8&nbsp;&nbsp;callbackRowDisplay (function, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.9"></a><a href="#node_sec_3.1.9">3.1.9&nbsp;&nbsp;sortColumn (int, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.10"></a><a href="#node_sec_3.1.10">3.1.10&nbsp;&nbsp;sortDesc (boolean, default false)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.11"></a><a href="#node_sec_3.1.11">3.1.11&nbsp;&nbsp;rowsPerPage (int, default 0)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.12"></a><a href="#node_sec_3.1.12">3.1.12&nbsp;&nbsp;filterOut (array, default [])</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.13"></a><a href="#node_sec_3.1.13">3.1.13&nbsp;&nbsp;show_asis (boolean or object)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.14"></a><a href="#node_sec_3.1.14">3.1.14&nbsp;&nbsp;convert (function, default null)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_3.1.15"></a><a href="#node_sec_3.1.15">3.1.15&nbsp;&nbsp;funcStyle (function, default null)</a><br>
+</p>
+<p><b>
+&nbsp; &nbsp; <a name="node_toc_node_sec_4"></a><a href="#node_sec_4">4&nbsp;&nbsp;Scenarios</a></b><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.1"></a><a href="#node_sec_4.1">4.1&nbsp;&nbsp;Table To Grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.2"></a><a href="#node_sec_4.2">4.2&nbsp;&nbsp;Grid Column Types</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.2.1"></a><a href="#node_sec_4.2.1">4.2.1&nbsp;&nbsp;HTML Table Column Types</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.2.2"></a><a href="#node_sec_4.2.2">4.2.2&nbsp;&nbsp;JSON Column Types</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.2.3"></a><a href="#node_sec_4.2.3">4.2.3&nbsp;&nbsp;XML Column Types</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.3"></a><a href="#node_sec_4.3">4.3&nbsp;&nbsp;Controls and Filters</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.3.1"></a><a href="#node_sec_4.3.1">4.3.1&nbsp;&nbsp;Filter Based on Selection</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.3.2"></a><a href="#node_sec_4.3.2">4.3.2&nbsp;&nbsp;Filter Based on Range</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.4"></a><a href="#node_sec_4.4">4.4&nbsp;&nbsp;Sorting</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.4.1"></a><a href="#node_sec_4.4.1">4.4.1&nbsp;&nbsp;Initial Sorting</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.4.2"></a><a href="#node_sec_4.4.2">4.4.2&nbsp;&nbsp;User Column Sorting</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.5"></a><a href="#node_sec_4.5">4.5&nbsp;&nbsp;AJAX - in the grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.6"></a><a href="#node_sec_4.6">4.6&nbsp;&nbsp;Show Data As Is</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.6.1"></a><a href="#node_sec_4.6.1">4.6.1&nbsp;&nbsp;show_asis (boolean or object)</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.7"></a><a href="#node_sec_4.7">4.7&nbsp;&nbsp;How to dynamically change grid cell Style based on contents</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.8"></a><a href="#node_sec_4.8">4.8&nbsp;&nbsp;Migrate Legacy Tables to Zapatec Grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.9"></a><a href="#node_sec_4.9">4.9&nbsp;&nbsp;Export to Flatfile</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.9.1"></a><a href="#node_sec_4.9.1">4.9.1&nbsp;&nbsp;CSV for Excel Import</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.10"></a><a href="#node_sec_4.10">4.10&nbsp;&nbsp;Dynamically Modify Grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.11"></a><a href="#node_sec_4.11">4.11&nbsp;&nbsp;Query Grid</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.11.1"></a><a href="#node_sec_4.11.1">4.11.1&nbsp;&nbsp;Grid Query Module - zpgrid-query.js</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.11.2"></a><a href="#node_sec_4.11.2">4.11.2&nbsp;&nbsp;Grid query() method</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.11.3"></a><a href="#node_sec_4.11.3">4.11.3&nbsp;&nbsp;Base GridQuery class</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.11.4"></a><a href="#node_sec_4.11.4">4.11.4&nbsp;&nbsp;Derived classes</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.12"></a><a href="#node_sec_4.12">4.12&nbsp;&nbsp;Charts</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; <a name="node_toc_node_sec_4.13"></a><a href="#node_sec_4.13">4.13&nbsp;&nbsp;Slider in Grid</a><br>
+</p>
+<p>
+</p>
+<a name="node_sec_1"></a>
+<h1><a href="#node_toc_node_sec_1">1&nbsp;&nbsp;Get the Zapatec AJAX Grid files</a></h1>
+<p></p>
+<a name="node_sec_1.1"></a>
+<h2><a href="#node_toc_node_sec_1.1">1.1&nbsp;&nbsp;Download the Zip file</a></h2>
+<p>
+The AJAX Grid files are bundled in a zip file. Click on the download link in
+the Grid section of Zapatec&#8217;s web site, and follow the instructions to
+download the file.</p>
+<p>
+</p>
+<p class=noindent>Save the file (zpgrid.zip) to your website&#8217;s root folder on your computer or
+server.</p>
+<p>
+</p>
+<a name="node_sec_1.2"></a>
+<h2><a href="#node_toc_node_sec_1.2">1.2&nbsp;&nbsp;Unzip zpgrid.zip</a></h2>
+<p></p>
+<ol> 
+<li><p>On your computer, go to the folder where you saved the file zpgrid.zip.
+</p>
+<li><p>zpgrid.zip contains a folder called zpgrid that holds all of the files you will need to create your grid.
+</p>
+<li><p>Open or double-click zpgrid.zip to unzip or unpack it.
+</p>
+</ol><p></p>
+<p>
+</p>
+<p>
+</p>
+<a name="node_sec_2"></a>
+<h1><a href="#node_toc_node_sec_2">2&nbsp;&nbsp;Quick Startup</a></h1>
+<p>If you have not done so follow the instructions in section <a href="#node_sec_1.1">1.1</a>. 
+to download and unzip the Grid files.</p>
+<p>
+</p>
+<a name="node_sec_2.1"></a>
+<h2><a href="#node_toc_node_sec_2.1">2.1&nbsp;&nbsp;Set Up Your Grid</a></h2>
+<p></p>
+<a name="node_sec_2.1.1"></a>
+<h3><a href="#node_toc_node_sec_2.1.1">2.1.1&nbsp;&nbsp;Insert The Headers</a></h3>
+<p>
+In your web editor (Dreamweaver, UltraEdit, etc.), open the web page where you
+want the grid placed.  Insert your cursor before the ending <tt>&lt;/head&gt;</tt> tag.
+Paste the following style path and script paths before the ending <tt>&lt;/head&gt;</tt> tag:</p>
+<p>
+</p>
+<pre class=verbatim>&lt;!-- Javascript utilities file for the grid --&gt;
+&lt;script src=&quot;utils/utils.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;!-- Transport file to fetch data--&gt;
+&lt;script src=&quot;utils/transport.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;!-- basic Javascript file for the widget --&gt;
+&lt;script src=&quot;utils/zpwidget.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;!-- basic Javascript file for the grid --&gt;
+&lt;script src=&quot;src/zpgrid.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;!-- CSS file for basic style in the grid--&gt;
+&lt;link href=&quot;themes/basic.css&quot; rel=&quot;stylesheet&quot; /&gt;
+</pre><p></p>
+<p>
+The above lines different files located in the grid folder. The files are:</p>
+<p>
+</p>
+<ul>
+<li><p><tt>utils.js</tt></p>
+<p>
+Located in the utils folder.  General javascript utilities file.</p>
+<p>
+</p>
+<li><p><tt>transport.js</tt></p>
+<p>
+Located in the utils folder.  Provides the transport calls to fetch data from the server.</p>
+<p>
+</p>
+<li><p><tt>zpwidget.js</tt></p>
+<p>
+Located in the utils folder.  Common widget methods and utilities.</p>
+<p>
+</p>
+<li><p><tt>zpgrid.js</tt></p>
+<p>
+Located in the src folder.  The main javascript grid file.</p>
+<p>
+</p>
+<li><p><tt>default.css</tt></p>
+<p>
+Located in the themes folder.  Provides basic style for the grid.</p>
+<p>
+</p>
+</ul><p></p>
+<p>
+</p>
+<a name="node_sec_2.1.2"></a>
+<h3><a href="#node_toc_node_sec_2.1.2">2.1.2&nbsp;&nbsp;Path Warning</a></h3>
+<p>If your web page containing the Grid is saved in the zpgrid folder, the
+above lines will work without any changes. If, however, you save your web page
+in another location (like directly under your website&#8217;s root folder), you will
+need to adjust the path for these files.</p>
+<p>
+</p>
+<a name="node_sec_2.2"></a>
+<h2><a href="#node_toc_node_sec_2.2">2.2&nbsp;&nbsp;Create the Presentation</a></h2>
+<p></p>
+<a name="node_sec_2.3"></a>
+<h2><a href="#node_toc_node_sec_2.3">2.3&nbsp;&nbsp;Attach the Zapatec Grid Object to your Presentation</a></h2>
+<p>All you have to do in your HTML page is call Zapatec.Grid to convert a HTML table to a Zapatec Grid</p>
+<p>
+</p>
+<pre class=verbatim>&lt;script type=&quot;text/javascript&quot;&gt;
+   Zapatec.Grid( source: 'myTab');
+&lt;/script&gt;
+</pre><p></p>
+<p>
+where myTab is an id that you have assigned to your HTML table.
+</p>
+<pre class=verbatim>&lt;table id='myTab'&gt;
+...
+</pre><p></p>
+<p>
+You can also attach the Zapatec Grid object using the body onload instead of inside a script tag.  Make sure you call Zapatec.Grid AFTER the table is created.
+</p>
+<pre class=verbatim>&lt;body onload='Zapatec.Grid( source: 'myTab')'&gt;
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_2.4"></a>
+<h2><a href="#node_toc_node_sec_2.4">2.4&nbsp;&nbsp;Copy your files to your web server</a></h2>
+<p>Using your editing or FTP program, copy or &quot;put&quot; your web page and the entire
+tree folder to the root of your website.</p>
+<p>
+</p>
+<a name="node_sec_2.5"></a>
+<h2><a href="#node_toc_node_sec_2.5">2.5&nbsp;&nbsp;Test the grid application</a></h2>
+<p>Using your web browser, navigate to the web page that you created to include
+the Zapatec AJAX Grid.  Congratulations! You have set up the most
+basic version of the Zapatec AJAX Grid! Now, on to the fun and exciting
+features you can change with this highly adaptable application!</p>
+<p>
+</p>
+<a name="node_sec_2.6"></a>
+<h2><a href="#node_toc_node_sec_2.6">2.6&nbsp;&nbsp;Change Included Files</a></h2>
+<p>You can change the theme of the grid by choosing to include a different 
+file in your header.</p>
+<p>
+</p>
+<a name="node_sec_2.6.1"></a>
+<h3><a href="#node_toc_node_sec_2.6.1">2.6.1&nbsp;&nbsp;Use a Different Theme</a></h3>
+<p>One of the lines you inserted in Section <a href="#node_sec_2.1.1">2.1.1</a> includes the
+default.css file in the themes folder. This is one of the themes that
+comes with the Zapatec AJAX Grid. You can choose between several themes by
+changing the file called by the path. Look in the themes folder for more
+options.</p>
+<p>
+</p>
+<a name="node_sec_3"></a>
+<h1><a href="#node_toc_node_sec_3">3&nbsp;&nbsp;Configuration Options</a></h1>
+<p>You can also pass a set of parameters when you create the grid to control the
+grid behavior.  The primary parameters are to define the source of data for the grid.</p>
+<p>
+</p>
+<a name="node_sec_3.1"></a>
+<h2><a href="#node_toc_node_sec_3.1">3.1&nbsp;&nbsp;Configuration Parameters</a></h2>
+<p></p>
+<a name="node_sec_3.1.1"></a>
+<h3><a href="#node_toc_node_sec_3.1.1">3.1.1&nbsp;&nbsp;source (string OR object, default null)</a></h3>
+<p>Where is the origin of the grid data?</p>
+<p>
+This option is coupled with the sourceType option (see <a href="#node_sec_3.1.2">3.1.2</a>).</p>
+<p>
+This option defines where the source of the grid is coming from.  Depending on the sourceType option your source will be either a String or an Object.  The String will be either the ID of container, the URL, or the External Filename.  The Object will either be a TABLE DOM object, JSON Object, or XMLDocument Object.</p>
+<p>
+Possible source values:
+</p>
+<ul>
+<li><p>HTML table - table DOM object or its id, sourceType: &#8217;html&#8217;
+</p>
+<li><p>JSON object or string - JSON object or string, sourceType: &#8217;json&#8217;
+</p>
+<li><p>JSON external file - URL of JSON data source, sourceType: &#8217;json/url&#8217;;
+</p>
+<li><p>XMLDocument object or XML string - XMLDocument object or XML string, sourceType: &#8217;xml&#8217;;
+</p>
+<li><p>XML external file - URL of XML data source, sourceType: &#8217;xml/url&#8217;.
+</p>
+</ul><p></p>
+<p>
+Here are some examples:</p>
+<p>
+From Table ID
+see <a href='../demo/phone.html'>Phone Bill Demo</a><br/></p>
+<pre class=verbatim>&lt;table id='myTable'&gt;...&lt;/table&gt;
+...
+source: 'myTable', // ID of TABLE
+sourceType: 'html'
+</pre><p></p>
+<p>
+An alternate way to define the source as a table OBJECT
+</p>
+<pre class=verbatim>source: document.getElementById('myTable'), // Object of TABLE
+sourceType: 'html'
+</pre><p></p>
+<p>
+From JSON External File
+see <a href='../demo/json_demo.html'>JSON Account Demo</a><br/></p>
+<pre class=verbatim>source: 'json_demo.txt',
+sourceType: 'json/url',
+</pre><p></p>
+<p>
+From JSON Object
+see <a href='../demo/yahoo.html'>Yahoo Demo</a><br/></p>
+<pre class=verbatim>source: objJsonSource,
+sourceType: 'json',
+</pre><p></p>
+<p>
+From XML File
+</p>
+<pre class=verbatim>source: 'xml_url.xml',
+sourceType: 'xml/url',
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_3.1.2"></a>
+<h3><a href="#node_toc_node_sec_3.1.2">3.1.2&nbsp;&nbsp;sourceType (string, default null)</a></h3>
+<p>
+What is the type of origin of the grid data?</p>
+<p>
+Used together with source option to specify how source should be processed.</p>
+<p>
+Otherwise ignored.</p>
+<p>
+Possible source types: &#8217;html&#8217;, &#8217;json&#8217;, &#8217;json/url&#8217;, &#8217;xml&#8217;, &#8217;xml/url&#8217;.</p>
+<p>
+</p>
+<a name="node_sec_3.1.3"></a>
+<h3><a href="#node_toc_node_sec_3.1.3">3.1.3&nbsp;&nbsp;container (string OR object, default null)</a></h3>
+<p>Where is the grid placed?</p>
+<p>
+Element or id of element that will hold the grid.</p>
+<p>
+If callbackHeaderDisplay and callbackRowDisplay options are defined, grid will be drawn
+using those functions and container option is ignored.</p>
+<p>
+Also can be used instead of source option. If source option is not defined,
+first child table of container element is used as source.</p>
+<p>
+</p>
+<a name="node_sec_3.1.4"></a>
+<h3><a href="#node_toc_node_sec_3.1.4">3.1.4&nbsp;&nbsp;theme (string, default &#8221;)</a></h3>
+<p>Which theme is used to present the grid?</p>
+<p>
+Theme name that will be used to display the grid.  Themes are located in the zpgrid/themes directory.</p>
+<p>
+Corresponding CSS file will be picked and added into the HTML document
+head element automatically.</p>
+<p>
+NOTE: This is Case insensitive.</p>
+<p>
+</p>
+<a name="node_sec_3.1.5"></a>
+<h3><a href="#node_toc_node_sec_3.1.5">3.1.5&nbsp;&nbsp;themePath (string, default &#8217;../themes&#8217;)</a></h3>
+<p>The path to the grid&#8217;s theme directory. The default works fine if you create your page in zpgrid/demo or any
+of the other directories under zpgrid. Otherwise, set the path to the correct location. </p>
+<p>
+</p>
+<a name="node_sec_3.1.6"></a>
+<h3><a href="#node_toc_node_sec_3.1.6">3.1.6&nbsp;&nbsp;textFilter (string, default null)</a></h3>
+<p>Only rows containing this text fragment will be shown.</p>
+<p>
+You can also call objGrid.setFilter({text: form.textFilter.value}); to set a textFilter.</p>
+<p>
+see <a href='../demo/phone.html'>Phone Bill Demo</a><br/></p>
+<p>
+</p>
+<a name="node_sec_3.1.7"></a>
+<h3><a href="#node_toc_node_sec_3.1.7">3.1.7&nbsp;&nbsp;callbackHeaderDisplay (function, default null)</a></h3>
+<p>Callback function to display grid header.  </p>
+<p>
+This options gives you the abililty to perform more complex data manipulation before the grid is presented.</p>
+<p>
+see <a href='../demo/yahoo.html'>Yahoo Demo</a><br/></p>
+<p>
+Used togeter with callbackRowDisplay option as alternetive way to display grid, oterwise ignored.</p>
+<p>
+Receives reference to header object with following properties:
+
+userTableStyle: table style attribute defined by user [string],
+userStyle: header tr style attribute defined by user [string],
+fields: [
+
+title: field title [string],
+userStyle: table cell style attribute defined by user [string],
+onclick: table cell onclick attribute value as string [string]
+,
+...
+]
+</p>
+<p>
+</p>
+<a name="node_sec_3.1.8"></a>
+<h3><a href="#node_toc_node_sec_3.1.8">3.1.8&nbsp;&nbsp;callbackRowDisplay (function, default null)</a></h3>
+<p>Callback function to display grid row.</p>
+<p>
+see <a href='../demo/yahoo.html'>Yahoo Demo</a><br/></p>
+<p>
+Used togeter with callbackHeaderDisplay option as alternetive way to display grid, oterwise ignored.</p>
+<p>
+Receives reference to row object with following properties:
+
+id: row number in the order of source [number],
+selected: indicates that this row is selected [boolean],
+onclick: onclick attribute value as string [string],
+cells: [
+
+data: 
+mixedValue: cell value [any],
+compareValue: cell value to compare during sorting [any]
+,
+userStyle: table cell style attribute defined by user [string]
+,
+...
+],
+userStyle: table row style attribute defined by user [string]
+</p>
+<p>
+To get cell value as string, use its toString() method.
+E.g. objRow.cells[0].data.toString()</p>
+<p>
+</p>
+<a name="node_sec_3.1.9"></a>
+<h3><a href="#node_toc_node_sec_3.1.9">3.1.9&nbsp;&nbsp;sortColumn (int, default null)</a></h3>
+<p>Which column should the grid be initially sorted?</p>
+<p>
+see <a href='../demo/stock.html'>Stock Performance Demo</a><br/></p>
+<p>
+Number of column to sort initially.</p>
+<p>
+First column number is 0.</p>
+<p>
+If not set, initially grid will not be sorted.</p>
+<p>
+</p>
+<a name="node_sec_3.1.10"></a>
+<h3><a href="#node_toc_node_sec_3.1.10">3.1.10&nbsp;&nbsp;sortDesc (boolean, default false)</a></h3>
+<p>Should the sortColumn be initially sorted in descending order?</p>
+<p>
+Used together with sortColumn option. Otherwise ignored.</p>
+<p>
+If true, initially grid will be sorted in descending order.</p>
+<p>
+</p>
+<a name="node_sec_3.1.11"></a>
+<h3><a href="#node_toc_node_sec_3.1.11">3.1.11&nbsp;&nbsp;rowsPerPage (int, default 0)</a></h3>
+<p>How many grid rows should be displayed per grid page?</p>
+<p>
+see <a href='../demo/phone.html'>Phone Bill Demo</a><br/></p>
+<p>
+If this option is NOT defined then the FULL grid is displayed. When set, will trigger the display 
+of the pager under the grid providing a way for the user to move forwad and backwards in the data set.</p>
+<p>
+</p>
+<a name="node_sec_3.1.12"></a>
+<h3><a href="#node_toc_node_sec_3.1.12">3.1.12&nbsp;&nbsp;filterOut (array, default [])</a></h3>
+<p>Provides a way to add checkboxes to filter in/out items in your grid?</p>
+<p>
+see <a href='../demo/json_demo.html'>JSON Demo</a><br/></p>
+<p>
+This option allows you to add Filter controls to your grid.  </p>
+<p>
+It generates a list of checkboxes (container) for unique values in the specified column (column) that you can include in a form. The user then can click on the checkboxes to include or exclude rows from the grid that match these values.</p>
+<p>
+Array of associative arrays.</p>
+<p>
+Following properties of associative array are recognized:</p>
+<p>
+</p>
+<ul>
+<li><p>container OR callback: 
+</p>
+<ul>
+<li><p>container:element or id of element that will hold the list of values to filter out;
+</p>
+<li><p>callback:callback function used as alternative way to display filter out list;
+</p>
+</ul><p>
+</p>
+<li><p>column: number of column to use as source of values to filter out.  First column number is 0.
+</p>
+<li><p>sortDesc: (boolean, optional) if true, list of values will be sorted descending, otherwise ascending (default: false)
+</p>
+<li><p>onclick: (string, optional) string with javascript code that will be evaluated when checkbox is clicked before filtering out the grid (should not contain &quot; (double quote) symbol)
+</p>
+</ul><p></p>
+<p>
+Only one of &quot;callback&quot; and &quot;container&quot; properties should be defined.
+If they are defined both, &quot;callback&quot; takes precedence over &quot;container&quot;.</p>
+<p>
+callback scenario is passed an array of objects.  The object has the properties
+value and onclick, where value is a unique value of column and onclick is the 
+string to call the function to filter the grid.</p>
+<p>
+see Account Filter in <a href='../demo/json_demo.html'>JSON Demo</a><br/></p>
+<p>
+</p>
+<a name="node_sec_3.1.13"></a>
+<h3><a href="#node_toc_node_sec_3.1.13">3.1.13&nbsp;&nbsp;show_asis (boolean or object)</a></h3>
+<p>This options allows you to show the ORIGINAL source value or the converted Zapatec Grid Field Type value.</p>
+<p>
+NOTE: This option ONLY affects the visual presentation of the cell.  The cell value is NOT changed.</p>
+<p>
+boolean - true=show original value, false=show mixedValue, default false.</p>
+<p>
+object - {bBoth, funcShow}</p>
+<p>
+bBoth - Show both converted and original cell value.  Good for testing.</p>
+<p>
+funcShow - function to format the grid cell for presnetation.</p>
+<p>
+If defined, this function is called for every cell in the grid.  Therefore, based on the column, iCol, you will decide how to format the cell for presentation.</p>
+<p>
+funcShow(iRow, iCol, arrRows) </p>
+<p>
+iRow and iCol is the index for the current cell.</p>
+<p>
+arrRows is the array of cells for the grid.</p>
+<p>
+see <a href='../demo/asis.html'>Show Data AS IS</a>for more details on this feature.</p>
+<p>
+</p>
+<a name="node_sec_3.1.14"></a>
+<h3><a href="#node_toc_node_sec_3.1.14">3.1.14&nbsp;&nbsp;convert (function, default null)</a></h3>
+<p>
+Callback function to convert a grid cell.  </p>
+<p>
+You should use this option to convert your source cell data to the Zapatec Grid cell value.</p>
+<p>
+This is very useful when your source data has metrics or notations (lbs, oz, MB, GB, ...) and you want to be able to quatify these metrics.  For example, your source data has a column Data Size, where each cell has a number and MB or GB.  To properly quantify these cells the notation of 20 MB needs to be converted to a number.  This is where the convert option is used.</p>
+<p>
+In essence, you have a presentable original cell value &quot;20 MB&quot; and you create an internal cell value, being 20 X 1024 X 1000000 = 20480000000</p>
+<p>
+see <a href='../demo/asis.html'>Show Data AS IS</a>for more details on this feature.</p>
+<p>
+</p>
+<a name="node_sec_3.1.15"></a>
+<h3><a href="#node_toc_node_sec_3.1.15">3.1.15&nbsp;&nbsp;funcStyle (function, default null)</a></h3>
+<p>Callback function to dynamically change the style of a cell based on the contents of the cell.</p>
+<p>
+For example, you can defined funcStyle:myStyle.  myStyle is the callback function that will dynamically define the style.  The function signature is as follows:</p>
+<p>
+myStyle(iRow, iCol, arrRows)</p>
+<p>
+</p>
+<ul>
+<li><p>iRow - current row in grid   
+</p>
+<li><p>iCol - current col in grid
+</p>
+<li><p>arrRows - array of Zapatec.GridRow, could be filtered   
+</p>
+</ul><p></p>
+<p>
+Your function should return a string which is the inline style that should be applied to this cell.
+Return undefined if NO change to style.</p>
+<p>
+In the demo see <a href='../demo/asis.html'>Show Data AS IS</a>the style for the Price column is dynamically generated.  If the Price is negative then the color is red.  All prices are right aligned.</p>
+<p>
+</p>
+<pre class=verbatim>/*
+   Dynamically change the style of a cell based on the contents.
+   iRow - current row in grid   iCol - current col in grid
+   arrRows - array of Zapatec.GridRow, could be filtered   
+   return undefined if NO change to style
+   return the inline style that should be applied to this cell
+
+   This function will set the style of the FLD_PRICE column.
+   Any negative price is set to RED.   
+   All prices aligned right.
+*/   
+function myStyle(iRow, iCol, arrRows)
+   {      
+   if (iCol != FLD_PRICE)
+      return undefined
+   var strStyle;
+   if (arrRows[iRow].cells[iCol].data.mixedValue &lt; 0)
+      return 'color:red; text-align:right;'
+
+   return &quot;text-align:right;&quot;   
+   }
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4"></a>
+<h1><a href="#node_toc_node_sec_4">4&nbsp;&nbsp;Scenarios</a></h1>
+<p></p>
+<a name="node_sec_4.1"></a>
+<h2><a href="#node_toc_node_sec_4.1">4.1&nbsp;&nbsp;Table To Grid</a></h2>
+<p>The easiest way to generate a Zapatec Grid is to use an HTML table.</p>
+<p>
+We use The Stock Performance demo to analyze how to convert a standard HTML table to a Zapatec Grid.</p>
+<p>
+see <a href='../demo/stock.html'>Stock Performance Demo</a><br/></p>
+<p>
+The following shows the HTML of the Stock Performance demo that is needed to
+convert the HTML table to a Zapatec Grid.</p>
+<p>
+</p>
+<ul>
+<li><p>Notice the use of ids for the DIV and the TABLE. These are used by the Javascript code later
+to determine where to put the grid and where the data is located. 
+</p>
+<li><p>In the table header the different data types tell the grid how to sort the data
+</p>
+</ul><p></p>
+<p>
+</p>
+<pre class=verbatim>&lt;div class='zpGridDefault' id=&quot;myGrid&quot;&gt;
+&lt;table id='myTab'&gt;
+&lt;tr&gt;
+	&lt;th&gt;Symbol&lt;/th&gt;
+	&lt;th&gt;Name&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;Mkt Cap&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;Last&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;P/E&lt;/th&gt;
+	&lt;th class='zpGridTypeInt'&gt;Volume&lt;/th&gt;
+	&lt;th&gt;Tick Trend&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td&gt; MSFT &lt;/td&gt;
+	&lt;td&gt; MICROSOFT CP &lt;/td&gt;
+	&lt;td&gt; 283.0B &lt;/td&gt;
+	&lt;td&gt; 26.59 &lt;td&gt;
+	&lt;td&gt; 91,307,152	 &lt;/td&gt;
+	&lt;td&gt; ==-=== &lt;/td&gt;
+&lt;/tr&gt;
+</pre><p></p>
+<p>
+source: &#8217;myTab&#8217;</p>
+<p>
+Define the Source Type of the data.  In this case it is HTML.</p>
+<p>
+sourceType: &#8217;html&#8217;</p>
+<p>
+Define the container where the Zapatec Grid will be displayed.  In this case in the DIV that has ID myGrid.</p>
+<p>
+container: &#8217;myGrid&#8217;</p>
+<p>
+Define the theme for the Zapatec Grid.  </p>
+<p>
+theme: &#8217;default&#8217;</p>
+<p>
+Here is how you create an instance of the Zapatec Grid with the above Configuration Parameters:</p>
+<p>
+</p>
+<pre class=verbatim>&lt;script type=&quot;text/javascript&quot;&gt;
+var myTable = new Zapatec.Grid({
+	source: 'myTab',
+	sourceType: 'html',
+	theme: 'default',
+	container: 'myGrid'
+});
+&lt;/script&gt;
+</pre><p></p>
+<p>
+The contents of the HTML TABLE, myTab, are moved to the DIV, myGrid.</p>
+<p>
+</p>
+<a name="node_sec_4.2"></a>
+<h2><a href="#node_toc_node_sec_4.2">4.2&nbsp;&nbsp;Grid Column Types</a></h2>
+<p>
+NOTE: If there is NO column type defined then the default is String.</p>
+<p>
+The following list defines the Column Types</p>
+<p>
+</p>
+<ul>
+<li><p>zpGridTypeString - String
+</p>
+<li><p>zpGridTypeStringInsensitive - String case insensitive
+</p>
+<li><p>zpGridTypeInt - Integer
+</p>
+<li><p>zpGridTypeFloat - Float
+</p>
+<li><p>zpGridTypeDate - Date
+</p>
+<li><p>zpGridTypeTimestampLocale - UNIX timestamp (value displayed in locale format)
+</p>
+<li><p>zpGridTypeTimestampMMDDYYYY - UNIX timestamp (value displayed in MM/DD/YYYY)
+</p>
+<li><p>zpGridTypeTimestampDDMMYYYY - UNIX timestamp (value displayed in DD/MM/YYYY)
+</p>
+<li><p>zpGridTypeTimestampYYYYMMDD - UNIX timestamp (value displayed in YYYY/MM/DD)
+</p>
+<li><p>zpGridTypeBoolean - Boolean
+</p>
+<li><p>zpGridTypeTime - Time - </p>
+<p>
+Following time formats are recognized:
+</p>
+<ul>
+<li><p>HH:MM:SS
+</p>
+<li><p>HH:MM:SS AM/PM
+</p>
+<li><p>HH:MM
+</p>
+<li><p>HH:MM AM/PM
+</p>
+<li><p>HHMMSS
+</p>
+<li><p>HHMMSS AM/PM
+</p>
+<li><p>HHMM
+</p>
+<li><p>HHMM AM/PM
+</p>
+</ul><p>
+Any type of separator can be used.
+Examples: 1.40AM, 05-06-02, 3:8:1, 0205</p>
+<div align=center><img src="reference-Z-G-1.gif" border="0" alt="PM"></div><p>, etc.</p>
+<p>
+</p>
+</ul><p></p>
+<p>
+</p>
+<a name="node_sec_4.2.1"></a>
+<h3><a href="#node_toc_node_sec_4.2.1">4.2.1&nbsp;&nbsp;HTML Table Column Types</a></h3>
+<p>The first row of your table should define the type of data for each column.</p>
+<p>
+In the TABLE TH CLASS define the Zapatec Column Type.</p>
+<p>
+In the Stock Performance example the Column Types are as follows:</p>
+<p>
+</p>
+<pre class=verbatim>&lt;tr&gt;
+	&lt;th&gt;Symbol&lt;/th&gt;
+	&lt;th&gt;Name&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;Mkt Cap&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;Last&lt;/th&gt;
+	&lt;th class='zpGridTypeFloat'&gt;P/E&lt;/th&gt;
+	&lt;th class='zpGridTypeInt'&gt;Volume&lt;/th&gt;
+	&lt;th&gt;Tick Trend&lt;/th&gt;
+&lt;/tr&gt;
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.2.2"></a>
+<h3><a href="#node_toc_node_sec_4.2.2">4.2.2&nbsp;&nbsp;JSON Column Types</a></h3>
+<p>For JSON you need to define the column headers in the fields collection.</p>
+<p>
+see <a href='../demo/json_demo.txt'>JSON Text File</a><br/></p>
+<p>
+</p>
+<pre class=verbatim>&quot;fields&quot;: [
+      {&quot;title&quot;: &quot;Date&quot;, &quot;dataType&quot;: &quot;date&quot;},
+      {&quot;title&quot;: &quot;Account&quot;, &quot;dataType&quot;: &quot;string&quot;},
+      {&quot;title&quot;: &quot;Full Name&quot;, &quot;dataType&quot;: &quot;istring&quot;, &quot;style&quot;: &quot;font-weight: bold&quot;},
+      {&quot;title&quot;: &quot;Ref#&quot;, &quot;dataType&quot;: &quot;integer&quot;},
+      {&quot;title&quot;: &quot;Amount&quot;, &quot;dataType&quot;: &quot;float&quot;}
+   ],
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.2.3"></a>
+<h3><a href="#node_toc_node_sec_4.2.3">4.2.3&nbsp;&nbsp;XML Column Types</a></h3>
+<p>For XML you need to define the column headers in the fields collection.</p>
+<p>
+see <a href='../demo/xml_demo.xml'>JSON Text File</a><br/></p>
+<p>
+</p>
+<pre class=verbatim>&lt;fields&gt;
+	&lt;field&gt;
+		&lt;title&gt;Date&lt;/title&gt;
+		&lt;datatype&gt;date&lt;/datatype&gt;
+	&lt;/field&gt;
+	&lt;field&gt;
+		&lt;title&gt;Account&lt;/title&gt;
+		&lt;datatype&gt;string&lt;/datatype&gt;
+	&lt;/field&gt;
+	&lt;field style=&quot;font-weight: bold&quot;&gt;
+		&lt;title&gt;Full Name&lt;/title&gt;
+		&lt;datatype&gt;istring&lt;/datatype&gt;
+	&lt;/field&gt;
+	&lt;field&gt;
+		&lt;title&gt;Ref#&lt;/title&gt;
+		&lt;datatype&gt;integer&lt;/datatype&gt;
+	&lt;/field&gt;
+	&lt;field&gt;
+		&lt;title&gt;Amount&lt;/title&gt;
+		&lt;datatype&gt;float&lt;/datatype&gt;
+	&lt;/field&gt;
+&lt;/fields&gt;
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.3"></a>
+<h2><a href="#node_toc_node_sec_4.3">4.3&nbsp;&nbsp;Controls and Filters</a></h2>
+<p>The Zapatec Grid can AUTOMATICALLY define Controls for Filters.</p>
+<p>
+A Control is basically the selection criteria a user enters for a grid column.</p>
+<p>
+A Filter happens after the user enters information into the Control and clicks the button to perform the Filter.</p>
+<p>
+You can automatically define the Controls for a Filter using the option filterOut.</p>
+<p>
+Each Control is basically a way to filter the grid based on column contents and user criteria.</p>
+<p>
+There are 2 types of filters you can apply to a Zapatec Grid.  One is based on Selection and the other is based on Range.</p>
+<p>
+A Selection Control is a set of checkboxes for unique values for a column in the grid.</p>
+<p>
+A Range Control is a From/To range the user can enter for a column in the grid.</p>
+<p>
+</p>
+<a name="node_sec_4.3.1"></a>
+<h3><a href="#node_toc_node_sec_4.3.1">4.3.1&nbsp;&nbsp;Filter Based on Selection</a></h3>
+<p>see <a href='../demo/json_demo.html'>JSON Demo</a><br/></p>
+<p>
+</p>
+<pre class=verbatim>filterOut: [
+	{container: 'myFilterOut', column: 0}, // Selection - container - Filter Date
+	{callback: callback_Acct, column: 1}   // Selection - callback  - Filter Acct
+]
+</pre><p>
+The above filterOut has 2 filters.  One will use the container scenario and the other filter will use the callback scenario.  The Date Filter uses the container and the Account Filter uses the callback.  </p>
+<p>
+For the Date Filter you tell Zapatec Grid the ID where to put the control, which is the DIV whose ID is myFilterOut.  You set container: &#8217;myFilterOut&#8217;.  You also need to tell Zapatec Grid which column in the table to filter.  This is the first column, which is column 0.  You set column: 0.  The filterOut entry is then {container: &#8217;myFilterOut&#8217;, column: 0}.</p>
+<p>
+The actual control will be a set of checkboxes where each checkbox is a unique value of the column defined in filterOut.  If the checkbox is ON then all rows with that column value are displayed, if OFF then rows with this column value are NOT displayed.</p>
+<p>
+In other words, your web page has a DIV whose ID is myFilterOut.  You tell the Zapatec Grid to filter on column 0, which is the Date column.</p>
+<p>
+The second filterOut entry, {callback: callback_Acct, column: 1} is used for the Account Filter.  Instead of using &#8217;container&#8217; and putting the filter in a DIV we are using a callback function.  The callback function is passed the set of unique values for the column.  In this case the set of unique Account Numbers.  You should use the &#8217;callback&#8217; scenario if you have more advanced rules that the &#8217;container&#8217; scenario does not satisfy.</p>
+<p>
+In summary, the filterOut takes in an array of objects.  Each object has 2 properties.  The first property is either &#8217;container&#8217; or &#8217;callback&#8217; and the second property is the column to filter on (starting at 0).</p>
+<p>
+</p>
+<a name="node_sec_4.3.2"></a>
+<h3><a href="#node_toc_node_sec_4.3.2">4.3.2&nbsp;&nbsp;Filter Based on Range</a></h3>
+<p>see <a href='../demo/json_demo.html'>JSON Demo</a><br/>If you want to filter the grid based on a range of values for a column you call the Zapatec Grid function limitRange(objArgs), where colNumber is the column to filter (1st column is 0), minValue is the minimum value for range, and maxValue is the maximum value for the range.</p>
+<p>
+For example, if you want to show all rows whose 1st column has a value between 10 and 20 then you would call the function as follows: limitRange(objArgs).</p>
+<p>
+</p>
+<pre class=verbatim>objArgs [object] following object:
+{
+  column: [number] number of column to filter,
+  min [any, optional] minimum cell value,
+  max [any, optional] mamximum cell value
+}
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.4"></a>
+<h2><a href="#node_toc_node_sec_4.4">4.4&nbsp;&nbsp;Sorting</a></h2>
+<p>see <a href='../demo/stock.html'>Stock Performance Demo</a><br/></p>
+<p>
+The grid column is sorted based on the Column Types, see <a href="#node_sec_4.2">4.2</a>.</p>
+<p>
+</p>
+<a name="node_sec_4.4.1"></a>
+<h3><a href="#node_toc_node_sec_4.4.1">4.4.1&nbsp;&nbsp;Initial Sorting</a></h3>
+<p>If you want the grid to be Initially sorted then set the options sortColumn and sortDesc.</p>
+<p>
+For example if you want the 1st column in your grid to be sorted in ascending order then just set sortColumn to 0.</p>
+<p>
+Anoter example, if you want the 2nd column in your grid to be sorted in descending order then set sortColumn to 1 and sortDesc to true.</p>
+<p>
+If you do NOT want your grid Initially sorted then do NOT set the option sortColumn.  </p>
+<p>
+</p>
+<a name="node_sec_4.4.2"></a>
+<h3><a href="#node_toc_node_sec_4.4.2">4.4.2&nbsp;&nbsp;User Column Sorting</a></h3>
+<p>You can click on the column header in 1st row to sort grid based on this column.</p>
+<p>
+The column will toggle between ascending and descending on multiple clicks.</p>
+<p>
+</p>
+<a name="node_sec_4.5"></a>
+<h2><a href="#node_toc_node_sec_4.5">4.5&nbsp;&nbsp;AJAX - in the grid</a></h2>
+<p>How can I implement AJAX in the Zapatec Grid?</p>
+<p>
+see <a href='../demo/json_demo.html'>JSON Demo</a><br/></p>
+<p>
+The Zapatec Grid has built in functionality for AJAX fetching after the page
+had been displayed.  You just define the source  as either JSON or XML and sourceType to be
+a server side file.</p>
+<p>
+</p>
+<a name="node_sec_4.6"></a>
+<h2><a href="#node_toc_node_sec_4.6">4.6&nbsp;&nbsp;Show Data As Is</a></h2>
+<p>
+There are times when you want to show your source data AS IS and other times you want the Zapatec Grid to convert the format of the data.  </p>
+<p>
+Also, this feature allows you to dynamically convert your source data.  This is very useful to migrate your legacy tables to the Zapatec Grid (USING CLIENT SIDE ONLY).  With this scenario you do NOT have to have the server convert the data.  Just use the functions in the client side Zapatec Grid to convert and migrate the TABLE.</p>
+<p>
+see <a href='../demo/asis.html'>Show Data AS IS</a><br/></p>
+<p>
+As you can see in the above demo, the 1st column shows the Disk Size.  The column displays the disk size with the metrics MB or GB.  The internal value of this cell is converted to a number, zpGridTypeFloat.  The internal value is used for sorting and other grid functions.</p>
+<p>
+The 2nd column, Hours, is a similar scenario.  The cell is presented with the notation # week, # days, # hours.  The internal value is an integer, zpGridTypeInt, which is Hours.</p>
+<p>
+The 3rd column, Price, converts the price to have the format $#,###.## format.  Where each price is prefixed with $ and each thousands place is separated with a comma &#8217;,&#8217; and the cents is followed by the decimal.  Also, negative prices are in RED.</p>
+<p>
+You can also use this feature to dynamically change the presentation of a grid cell, see funcShow.</p>
+<p>
+This section details how you can accomplish these tasks.</p>
+<p>
+</p>
+<a name="node_sec_4.6.1"></a>
+<h3><a href="#node_toc_node_sec_4.6.1">4.6.1&nbsp;&nbsp;show_asis (boolean or object)</a></h3>
+<p>boolean - true=show original value, false=show mixedValue, default false.</p>
+<p>
+object - {bBoth, funcShow}</p>
+<p>
+bBoth - Show both converted and original cell value.  Good for testing.</p>
+<p>
+funcShow - function to convert the grid cell and return the cell value.</p>
+<p>
+If defined, this function is called for every cell in the grid.  Therefore, based on the column, iCol, you will decide how to convert the cell data.</p>
+<p>
+funcShow(iRow, iCol, arrRows) </p>
+<p>
+iRow and iCol is the index for the current cell.</p>
+<p>
+arrRows is the array of cells for the grid.</p>
+<p>
+To access the data for this cell:
+</p>
+<pre class=verbatim>   var value=arrRows[iRow].cells[iCol].data.mixedValue;
+</pre><p></p>
+<p>
+Here is an example function that will convert the grid cell if the 
+column is a Price column (FLD_PRICE).</p>
+<p>
+</p>
+<pre class=verbatim>function show_data(iRow, iCol, arrRows)
+   {
+   var value=arrRows[iRow].cells[iCol].data.mixedValue;
+
+   if (iCol==FLD_PRICE)
+      return formatCurrency(value)
+
+   return arrRows[iRow].cells[iCol].data.origValue;
+   }
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.7"></a>
+<h2><a href="#node_toc_node_sec_4.7">4.7&nbsp;&nbsp;How to dynamically change grid cell Style based on contents</a></h2>
+<p>
+The option funcStyle allows you to set the style of the grid cell.  In the 
+demo  <a href='../demo/asis.html'>Show Data AS IS</a>the style for the Price column is dynamically generated.  If the Price is negative then the color is red.  All prices are right aligned.</p>
+<p>
+</p>
+<pre class=verbatim>/*
+   Dynamically change the style of a cell based on the contents.
+   iRow - current row in grid   iCol - current col in grid
+   arrRows - array of Zapatec.GridRow, could be filtered   
+   return undefined if NO change to style
+   return the inline style that should be applied to this cell
+
+   This function will set the style of the FLD_PRICE column.
+   Any negative price is set to RED.   
+   All prices aligned right.
+*/   
+function myStyle(iRow, iCol, arrRows)
+   {      
+   if (iCol != FLD_PRICE)
+      return undefined
+   var strStyle;
+   if (arrRows[iRow].cells[iCol].data.mixedValue &lt; 0)
+      return 'color:red; text-align:right;'
+
+   return &quot;text-align:right;&quot;   
+   }
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.8"></a>
+<h2><a href="#node_toc_node_sec_4.8">4.8&nbsp;&nbsp;Migrate Legacy Tables to Zapatec Grid</a></h2>
+<p>A very useful scenario to point out is how you can migrate your legacy TABLES using the Zapatec Grid.  That is, you can use CLIENT SIDE ONLY technology to give you these next generation features.</p>
+<p>
+You do not have to change ANY SERVER SIDE code.</p>
+<p>
+A quick workflow is as follows:</p>
+<p>
+</p>
+<ul>
+<li><p>Use the AS IS feature <a href="#node_sec_4.6">4.6</a>
+</p>
+<li><p>convert - convert the source data to the Zapatec Grid field type <a href="#node_sec_3.1.14">3.1.14</a>
+</p>
+<li><p>funcStyle - dynamically define the style for a grid cell <a href="#node_sec_4.7">4.7</a>
+</p>
+</ul><p></p>
+<p>
+see <a href='../demo/asis.html'>Show Data AS IS</a><br/></p>
+<p>
+</p>
+<a name="node_sec_4.9"></a>
+<h2><a href="#node_toc_node_sec_4.9">4.9&nbsp;&nbsp;Export to Flatfile</a></h2>
+<p>see <a href='../demo/asis.html'>Show Data AS IS</a><br/></p>
+<p>
+The Zapatec Grid allows you to export the grid data into a flatfile.  This flatfile can be a CSV (Comma Separated Value) or any other format.</p>
+<p>
+All you have to do is call the function function(FS, RS, intMode)
+</p>
+<ul>
+<li><p>FS [string] to separate each field
+</p>
+<li><p>RS [string] to separate each row
+</p>
+<li><p>intMode [number] mode of show data, 1=Check show_asis, 2=Force Grid Type,3=Force As Is, 4=Force Original
+</p>
+</ul><p></p>
+<p>
+Notes on function flatfile:
+</p>
+<ul>
+<li><p>Each field is separated by FS, if FS in field then enclose in double quotes
+</p>
+<li><p>Each record is separated by RS
+</p>
+<li><p>return string of grid in flatfile format
+</p>
+</ul><p></p>
+<p>
+</p>
+<a name="node_sec_4.9.1"></a>
+<h3><a href="#node_toc_node_sec_4.9.1">4.9.1&nbsp;&nbsp;CSV for Excel Import</a></h3>
+<p>I have a grid and I want to be able to export a flatfile of the grid in CSV format.  The following code illustrates this scenario.</p>
+<p>
+</p>
+<pre class=verbatim>var strFlatfile=grid.flatfile(',', '\n', 1)
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.10"></a>
+<h2><a href="#node_toc_node_sec_4.10">4.10&nbsp;&nbsp;Dynamically Modify Grid</a></h2>
+<p>see <a href='../demo/splice.html'>Splice</a><br/></p>
+<p>
+With this powerful feature you can have client side modifications of the Zapatec Grid.  There are many creative scenarios that can utilize this feature.  For example, you can automatically allow the user to modify server side database tables on the client.  The user can do mass search and replace changes on the client, optimizing client/server performance.</p>
+<p>
+All you have to do is call the method Zapatec.Grid.splice with the following object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+atRow: [number, optional] id of row at which to start changing the grid
+   (default: end of the grid),
+afterRow: [number, optional] id of row after which to start changing
+   the grid (ignored if atRow is defined),
+howMany: [number, optional] number of rows to remove (default: 0),
+rows: [object, optional] array of rows to add:
+[
+     {
+     cells:
+     [
+        {
+          data: [any] cell value,
+          style: [string, optional] table cell style attribute
+        },
+        ...
+     ],
+      style: [string, optional] table row style attribute
+    },
+    ...
+  ],
+noRefresh: [boolean, optional] indicates that grid should not be refreshed
+   after changing (default: false) (useful when several changes go one by
+   one)
+}
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.11"></a>
+<h2><a href="#node_toc_node_sec_4.11">4.11&nbsp;&nbsp;Query Grid</a></h2>
+<p>see <a href='../demo/query.html'>Query Grid Demo</a><br/></p>
+<p>
+Method Zapatec.Grid.query(objArgs)</p>
+<p>
+</p>
+<pre class=verbatim>objArgs [object] query object:
+{
+  type: [string] query type ('insert', 'update' or 'delete'),
+  rows: [object, optional] array of rows to add (see
+   Zapatec.Grid.prototype.splice for details),
+  values: [object, optional] object with new values of row (see
+   Zapatec.GridQueryUpdate.prototype.execute for details),
+  where: [object, optional] condition statement object (see
+   Zapatec.GridQuery.prototype.compileStatement for details),
+  noRefresh: [boolean, optional] indicates that grid should not be refreshed
+   after changing (default: false) (useful when several changes go one by
+   one)
+}
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.11.1"></a>
+<h3><a href="#node_toc_node_sec_4.11.1">4.11.1&nbsp;&nbsp;Grid Query Module - zpgrid-query.js</a></h3>
+<p>Separate module to use queries to the grid. Should be placed in the same directory as grid.js.</p>
+<p>
+To use queries you should either call query() method of the grid</p>
+<p>
+</p>
+<pre class=verbatim>objGrid.query({
+  type: 'insert',
+  rows: objRows
+});
+
+objGrid.query({
+  type: 'update',
+  values: {
+    cells: [
+      null,
+      null,
+      { data: value1 },
+      null,
+      { data: value2 }
+    ]
+  }
+  where: {
+    leftValue: {
+      column: 0
+    },
+    rightValue: {
+      value: iValue,
+      type: 'integer'
+    },
+    operator: '=='
+  }
+});
+
+objGrid.query({
+  type: 'delete',
+  where: {
+    leftValue: {
+      column: 0
+    },
+    rightValue: {
+      value: iValue,
+      type: 'integer'
+    },
+    operator: '=='
+  }
+});
+</pre><p></p>
+<p>
+or create GridQuery object and call its execute() method</p>
+<p>
+</p>
+<pre class=verbatim>var objQuery = new Zapatec.GridQueryInsert({
+  grid: objGrid
+});
+objQuery.execute({
+  rows: objRows
+});
+
+var objQuery = new Zapatec.GridQueryUpdate({
+  grid: objGrid,
+  where: {
+    leftValue: {
+      column: 0
+    },
+    rightValue: {
+      value: iValue,
+      type: 'integer'
+    },
+    operator: '=='
+  }
+});
+objQuery.execute({
+  cells: [
+    null,
+    null,
+    { data: value1 },
+    null,
+    { data: value2 }
+  ]
+});
+
+var objQuery = new Zapatec.GridQueryDelete({
+  grid: objGrid,
+  where: {
+    leftValue: {
+      column: 0
+    },
+    rightValue: {
+      value: iValue,
+      type: 'integer'
+    },
+    operator: '=='
+  }
+});
+objQuery.execute();
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.11.2"></a>
+<h3><a href="#node_toc_node_sec_4.11.2">4.11.2&nbsp;&nbsp;Grid query() method</a></h3>
+<p>Grid query() method accepts following query object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  type: [string] query type ('insert', 'update' or 'delete'),
+  rows: [object, optional] array of rows to add (used in insert queries),
+  values: [object, optional] object with new values of row (used in update queries),
+  where: [object, optional] condition statement object (used in update and delete queries),
+  noRefresh: [boolean, optional] indicates that grid should not be refreshed after changing (default: false)
+}
+</pre><p></p>
+<p>
+Object with new values of row:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  cells: [
+    {
+      data: [any] cell value,
+      style: [string, optional] table cell style attribute
+    },
+    ...
+  ],
+  style: [string, optional] table row style attribute
+}
+</pre><p></p>
+<p>
+Array of rows to add:</p>
+<p>
+</p>
+<pre class=verbatim>[
+  {
+    cells: [
+      {
+        data: [any] cell value,
+        style: [string, optional] table cell style attribute
+      },
+      ...
+    ],
+    style: [string, optional] table row style attribute
+  },
+  ...
+]
+</pre><p></p>
+<p>
+Description of statement object see below.</p>
+<p>
+noRefresh argument is useful when several changes go one by one.</p>
+<p>
+</p>
+<a name="node_sec_4.11.3"></a>
+<h3><a href="#node_toc_node_sec_4.11.3">4.11.3&nbsp;&nbsp;Base GridQuery class</a></h3>
+<p>Base GridQuery class accepts following query initialization object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  grid: [object] Grid object to query,
+  where: [object, optional] statement object that describes query condition (if not defined, all rows will be affected),
+  noRefresh: [boolean, optional] indicates that grid should not be refreshed after changing (default: false)
+}
+</pre><p></p>
+<p>
+Returns true if initialized successfully, otherwise false.</p>
+<p>
+Statement object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  leftValue: [object, optional] statement value object,
+  rightValue: [object, optional] statement value object,
+  operator: [string, optional] any javascript binary or unary operator
+}
+</pre><p></p>
+<p>
+Statement value object can be one of the following objects:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  column: [number] column number to use value of
+}
+</pre><p></p>
+<p>
+or</p>
+<p>
+</p>
+<pre class=verbatim>{
+  value: [any] any value,
+  type: [string, optional] specifies field type to use comparison rules of
+}
+</pre><p></p>
+<p>
+or</p>
+<p>
+</p>
+<pre class=verbatim>{
+  statement: [object] statement object (see above)
+}
+</pre><p></p>
+<p>
+If operator is binary (e.g. &#8217;==&#8217; or &#8217;&amp;&amp;&#8217;), both leftValue and rightValue are required. Operator can be left or right unary. In this case only one of leftValue or rightValue should be defined.</p>
+<p>
+Examples of statements:</p>
+<p>
+Statement !value can be described with following object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  rightValue: {value: value},
+  operator: '!'
+}
+</pre><p></p>
+<p>
+Statement value++ can be described with following object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  leftValue: {value: value},
+  operator: '++'
+}
+</pre><p></p>
+<p>
+Statement value1 == value2 can be described with following object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  leftValue: {value: value1},
+  rightValue: {value: value2},
+  operator: '=='
+}
+</pre><p></p>
+<p>
+Statement value != value1 &amp;&amp; value != -value2 can be described with following object:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  leftValue: {
+    statement: {
+      leftValue: {value: value},
+      rightValue: {value: value1},
+      operator: '!='
+    }
+  },
+  rightValue: {
+    statement: {
+      leftValue: {value: value},
+      rightValue: {
+        statement: {
+          rightValue: {value: value2},
+          operator: '-'
+        }
+      },
+      operator: '!='
+    }
+  },
+  operator: '&amp;&amp;'
+}
+</pre><p></p>
+<p>
+</p>
+<a name="node_sec_4.11.4"></a>
+<h3><a href="#node_toc_node_sec_4.11.4">4.11.4&nbsp;&nbsp;Derived classes</a></h3>
+<p>GridQueryInsert, GridQueryUpdate and GridQueryDelete classes are derived from GridQuery class.</p>
+<p>
+GridQueryInsert execute() method accepts object with new rows:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  rows: [
+    {
+      cells: [
+        {
+          data: [any] cell value,
+          style: [string, optional] table cell style attribute
+        },
+        ...
+      ],
+      style: [string, optional] table row style attribute
+    },
+    ...
+  ]
+}
+</pre><p></p>
+<p>
+New rows are appended to the end of the grid.</p>
+<p>
+GridQueryUpdate execute() method accepts object with new values of row:</p>
+<p>
+</p>
+<pre class=verbatim>{
+  cells: [
+    {
+      data: [any] cell value,
+      style: [string, optional] table cell style attribute
+    },
+    ...
+  ],
+  style: [string, optional] table row style attribute
+}
+</pre><p></p>
+<p>
+If only some of cells should be changed, specify only those cells. E.g.</p>
+<p>
+</p>
+<pre class=verbatim>{
+  cells: [
+    null,
+    null,
+    { data: value1 },
+    null,
+    { data: value2 }
+  ]
+}
+</pre><p></p>
+<p>
+will change only values in 3-rd and 5-th columns.</p>
+<p>
+execute() method can be called several times. This makes sense especially for insert queries.</p>
+<p>
+</p>
+<a name="node_sec_4.12"></a>
+<h2><a href="#node_toc_node_sec_4.12">4.12&nbsp;&nbsp;Charts</a></h2>
+<p>see <a href='../demo/chart.html'>FusionCharts Demo</a><br/></p>
+<p>
+This demo shows you how to use state of the art plug-ins with the Zapatec Grid. </p>
+<p>
+The actual plug-in used here is Macromedia Flash Player which creates FusionCharts.</p>
+<p>
+Explanation of FusionCharts can be found here: 
+<a href='http://www.infosoftglobal.com/FusionCharts/'>http://www.infosoftglobal.com/FusionCharts/</a><br/></p>
+<p>
+NOTE: Use the DEMO as a model to create your own charts with the Zapatec Grid.  </p>
+<p>
+Notice how this demo will check if the client has Flash installed.  If they do not then the following message is displayed:</p>
+<p>
+</p>
+<pre class=verbatim>In order to view this example, you must have the Macromedia Flash Player 6 or higher installed.
+</pre><p></p>
+<p>
+Also notice how this demo will check that the Flash file exists on the server.  The Zapatec.Transport (AJAX) module will check if the file exists on the server.  If the Flash file does NOT exist then the following message is displayed:
+</p>
+<pre class=verbatim>In order to view this example, FC_2_3_Column3D.swf file must be placed in demo folder.
+</pre><p></p>
+<p>
+Some powerful points to emphasize about the data model of the Zapatec Grid on the client are:</p>
+<p>
+</p>
+<ul>
+<li><p>Encapsulates the data.
+</p>
+<li><p>Easily traverse your data set for reporting.
+</p>
+<li><p>Grid API calls for data extraction/mining.
+</p>
+</ul><p></p>
+<p>
+</p>
+<a name="node_sec_4.13"></a>
+<h2><a href="#node_toc_node_sec_4.13">4.13&nbsp;&nbsp;Slider in Grid</a></h2>
+<p>see <a href='../demo/phone.html'>Phone Bill Demo</a><br/>You can filter the Zapatec Grid using the Zapatec Slider.  The Slider will give the user a state of the art graphical interface to define the range of values to filter the grid on.</p>
+<p>
+
+</p>
+<p></p>
+<div align=right class=colophon>Last modified: Friday, March 31st, 2006 3:36:42pm<br></div>
+</div>
+</body>
+</html>

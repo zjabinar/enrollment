@@ -1,0 +1,87 @@
+/* 
+  -----------------------------------
+  Accordion Panel Magic
+  by Project Seven Development
+  www.projectseven.com
+  Style Theme: 01 - Carbon
+  -----------------------------------
+*/
+
+.p7AB {
+	background-color: #CCCCCC;
+	padding: 0px;
+	border-bottom: 1px solid #333333;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.p7ABtrig {
+	margin: 0;
+	padding: 0;
+}
+.p7ABtrig h3, .p7ABtrig h4 {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+#p7ABW1 .p7ABtrig a, #p7ABW2 .p7ABtrig a,
+#p7ABW3 .p7ABtrig a, #p7ABW4 .p7ABtrig a,
+#p7ABW5 .p7ABtrig a, #p7ABW6 .p7ABtrig a,
+#p7ABW7 .p7ABtrig a, #p7ABW8 .p7ABtrig a,
+#p7ABW9 .p7ABtrig a, #p7ABW10 .p7ABtrig a {
+	display: block;
+	text-decoration: none;
+	padding: 4px 8px 4px 18px;
+	color: #999999;
+	font-weight: normal;
+	background-color: #333333;
+	border-bottom: 1px solid #000000;
+	border-top: 1px solid #4a4a4a;
+	background-image: url(images/p7ap_east_med_gray.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+#p7ABW1 .p7ABtrig a:hover, #p7ABW2 .p7ABtrig a:hover,
+#p7ABW3 .p7ABtrig a:hover, #p7ABW4 .p7ABtrig a:hover,
+#p7ABW5 .p7ABtrig a:hover, #p7ABW6 .p7ABtrig a:hover,
+#p7ABW7 .p7ABtrig a:hover, #p7ABW8 .p7ABtrig a:hover,
+#p7ABW9 .p7ABtrig a:hover, #p7ABW10 .p7ABtrig a:hover {
+	color: #CCCCCC;
+	background-color: #444444;
+}
+.p7ABtrig a:active, .p7ABtrig a:focus {
+	outline: 1px dotted #ccc;
+}
+#p7ABW1 .p7ABtrig .p7ABtrig_down, #p7ABW2 .p7ABtrig .p7ABtrig_down,
+#p7ABW3 .p7ABtrig .p7ABtrig_down, #p7ABW4 .p7ABtrig .p7ABtrig_down,
+#p7ABW5 .p7ABtrig .p7ABtrig_down, #p7ABW6 .p7ABtrig .p7ABtrig_down,
+#p7ABW7 .p7ABtrig .p7ABtrig_down, #p7ABW8 .p7ABtrig .p7ABtrig_down,
+#p7ABW9 .p7ABtrig .p7ABtrig_down, #p7ABW10 .p7ABtrig .p7ABtrig_down {
+	color: #ABABAB;
+	letter-spacing: 0.1em;
+	background-color: #333333;
+	background-image: url(images/p7ap_south_med_gray.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	font-weight: bold;
+}
+.p7ABcontent {
+	padding: 20px;
+	font-size: 12px;
+	line-height: 1.5em;
+	color: #333333;
+	background-color: #FFFFFF;
+	background-image: url(images/p7ap_light_gray_bevel.jpg);
+	background-repeat: repeat-x;
+	border-right: 1px solid #333333;
+	border-left: 1px solid #333333;
+}
+.p7ABcontent h2, .p7ABcontent h3, 
+.p7ABcontent h4 {
+	font-size: 14px;
+	color: #333333;
+	margin: 0px;
+	line-height: normal;
+	letter-spacing: 0.1em;
+}
+.p7ABcontent p {
+	margin: 6px 0 12px 0;
+}

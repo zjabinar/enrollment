@@ -1,0 +1,163 @@
+/*
+ "zpStatusImg" class images for form fields -- apply appropriate rules here.
+ The script auto-applies one of each of these CLASS attributes to a series of
+	nested <span>s with an innermost .zpStatusImg class <span> we style:
+ 1) "zpIsRequired" or "zpNotRequired".
+ 2) "zpIsEditing" or "zpNotEditing".
+ 3) "zpIsEmpty" or "zpNotEmpty".
+ 4) "zpIsValid" or "zpNotValid".
+	5) Always "zpStatusImg", this is the one styled.
+*/
+
+.zpFormAlternate2 span.zpStatusImg {
+	padding: 0px 12px;
+	height: 18px;	
+	line-height: 18px;
+	background-repeat: no-repeat;
+	background-position: center 2px;
+	opacity: 0.66;
+	filter: alpha(opacity=66);
+	margin-left:5px;
+	display: inline-block;
+	float: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	vertical-align: top;	
+}
+
+.zpFormAlternate2 .zpIsEditing span.zpStatusImg {
+	opacity: 1.0;
+	filter: alpha(opacity=100);
+}
+
+.zpFormAlternate2 .zpIsRequired span.zpStatusImg {
+	background-image: url(icons/required.gif);
+}
+
+.zpFormAlternate2 .zpIsEditing .zpNotEmpty span.zpStatusImg {
+	background-image: url(icons/editing.gif);
+}
+
+.zpFormAlternate2 .zpNotEditing .zpNotEmpty .zpNotValid span.zpStatusImg {
+	background-image: url(icons/required_invalid.gif);
+}
+
+.zpFormAlternate2 .zpIsValid span.zpStatusImg {
+	background-image: url(icons/validated.gif);
+}
+
+.zpFormAlternate2 .zpFormError{
+	font-family: Verdana, arial, sans-serif;
+	font-size: 12px;	
+	color: #F73460;
+	padding-left: 10px;
+	padding-right: 5px;
+	font-weight: bold;
+	vertical-align: top;
+	line-height: 20px; 
+	display: inline-block
+}
+
+.zpFormAlternate2 .multipleButton{
+	margin-left: 10px; 
+	width: 24px;	
+	font-size: 15px;
+	vertical-align: top;
+	margin-top: 2px;
+	text-align: center;
+	line-height: 10px;
+	padding-top: 1px;
+	font-size: 11px;
+}
+
+.zpFormAlternate2 select {	
+	font-family: "MS Sans Serif" , Arial, Tahoma, Verdana, sans-serif;
+	height: 19px;
+	line-height: 19px;
+	margin-bottom: 5px;
+	background:#ecefed;
+	border: solid 1px #8484A1;
+	margin-bottom: 5px;
+	color: #3333333;
+}
+
+.zpFormAlternate2 .fieldError {
+	font-weight: bold;
+}
+
+.zpFormAlternate2 input {
+	background:#ecefed;
+	border: solid 1px #8484A1;
+	margin-bottom: 5px;
+	color: #3333333;
+}
+
+.zpFormAlternate2 input:focus, .zpFormAlternate2 textarea:focus {
+	background-color: #f8faf9;
+}
+
+.zpFormAlternate2 textarea {
+	background:#ecefed;
+	border: solid 1px #8484A1;
+	margin-bottom: 5px;
+	color: #3333333;
+}
+
+.zpFormAlternate2 .zpFormLabel {
+	padding: 1px .2em 2px .2em;
+	width: 10em;
+	font-family: Verdana, arial, sans-serif;
+	font-size: 13px;
+	background: #A73460;
+	color: white;
+	margin-top: 1px;
+	margin-bottom: 5px;
+	margin-right: 7px;
+	float: left;
+}
+
+.zpFormAlternate2 .zpConsole {
+	background-color: #dddddd;
+	width:80%;
+	border: 1px dotted black;
+	padding:.3em;
+}
+
+.zpFormAlternate2 {
+	background: url("basic2/form_bg.gif");
+	padding: 20px;
+	border: double 4px #A3AAB3;
+}
+
+.zpFormAlternate2 .button{
+	background: url("button_bg.gif");
+	margin-right: 5px;
+	height: 22px;
+	line-height: 16px;
+	font-family: Thaoma, Verdana, Arial, sans-serif;
+	border: solid 1px gray;
+}
+
+.zpFormAlternate2 fieldset{
+	margin: 10px 0px;
+	padding: 10px;
+	border: solid 1px #998488;
+}
+
+* html .zpFormAlternate2 fieldset{
+	padding-top: 10px;
+}
+
+.zpFormAlternate2 legend{
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: bold;
+	font-size: 13px;
+	color: #D19592;
+	padding: 3px 5px;
+	text-decoration: underline;
+	font-style: oblique;
+}
+
+* html .zpFormAlternate2 legend{
+	margin-bottom: 10px;
+}

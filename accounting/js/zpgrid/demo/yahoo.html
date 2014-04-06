@@ -1,0 +1,224 @@
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+  <script type="text/javascript" src="../utils/utils.js"></script>
+  <script type="text/javascript" src="../utils/transport.js"></script>
+  <script type="text/javascript" src="../utils/zpwidget.js"></script>
+  <script type="text/javascript" src="../src/zpgrid.js"></script>
+  <link href="../themes/layout.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/zpcal.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/template.css" rel="stylesheet" type="text/css" />
+  <link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico" />
+  <title>Zapatec AJAX Grid Widget - Yahoo Search Example</title>
+  
+<style type="text/css">
+	.myHeader {
+	background-color: #efefef;;
+	padding:.3em;
+	margin:.3em;
+	cursor:pointer;
+	}
+</style>
+
+</head>
+<body>
+
+	<table class='zpStandard'><tr><td>
+
+	<div class="topMenuHeader">
+		<div class="logo">
+			<a href='http://www.zapatec.com'><img src='../website/images/logoNew.gif' alt='Zapatec logo' border='0'></a>
+		</div>
+		<div class="btn1">
+			<a href="https://www.zapatec.com/zadmin/buy.jsp">
+				<img src="../website/images/buttonBuy.png" alt='Buy Zapatec Forms' border="0">
+			</a>
+		</div>
+
+		<div class="btn1">
+			<a href="http://www.zapatec.com/website/main/pricing.jsp">
+				<img src="../website/images/buttonPricing.png" alt='Pricing for Zapatec Forms' border="0">
+			</a>
+		</div>
+	</div>
+
+	<div class="pageMain">
+	<a href="json_demo.html" style="float:left; margin-left:2em; margin-top:.5em;" accesskey="P">
+			<img border="0" src="../website/images/previous.png" alt="Previous Zapatec Javascript Form Example"></a>
+	<a href="asis.html" style="float:right; margin-right:2em; margin-top:.5em;" accesskey="N">
+			<img border="0" src="../website/images/next.png" alt="Next Zapatec Javascript Form Example"></a>
+		<div class='zpCalSubHeader' style='text-align:center'>Yahoo Search Example</div>
+
+		<br/>	
+
+
+		<div class='mainCol'>
+
+			This example demonstrates two features.
+			<ol>
+				<li>
+				Fetch the data from an external source, in this case a yahoo search, and pass it the data to the grid.
+				</li>
+				<li>
+				Using a callback you can  the data in any form -- it doesn't need to be a HTML table. In this case, we  the data in
+				the familiar search result layout.<br />
+				Notice however that you can still use the grid features such as sorting by the various fields.
+				</li>
+			</ol>
+			<hr/>
+			<br/>
+
+			<form onsubmit="return doSearch()">
+				<input type="text" size="40" id="searchInput">
+				<input type="submit" value="Search">
+			</form>
+		</div>
+		<div id="results" style="padding-top:2em; padding-bottom:1em"></div>
+		<div id="myOutput"></div>
+	</body>
+	<script type="text/javascript">
+
+		var objSearchInput = document.getElementById('searchInput');
+		objSearchInput.focus();
+
+		/*
+		 * Handle the results from Yahoo, and feed them to the grid widget
+		 */
+		function showResults(objResult) {
+
+
+			if (objResult.Error) {
+				document.getElementById('results').innerHTML = 'Error ' + objResult.Title;
+				return;
+			}
+
+		//First display somethine like "Results 1 - 10 of about 225073"
+			var strTotalResults = objResult.ResultSet.totalResultsAvailable;
+			var strFirstResPos = objResult.ResultSet.firstResultPosition;
+			var iLastResPos = strFirstResPos * 1 + objResult.ResultSet.totalResultsReturned * 1 - 1;
+			document.getElementById('results').innerHTML = 'Results ' + strFirstResPos + ' - ' + iLastResPos + ' of about ' + strTotalResults;
+
+			if(strTotalResults == 0) {
+				return;
+			}
+
+
+			//Structure of the output(grid) JSON object
+			var objJsonSource = {
+				fields: [
+				{title: "Title", dataType: "string"},
+				{title: "Summary", dataType: "string"},
+				{title: "URL", dataType: "string"},
+				{title: "Modified", dataType: "timestampMMDDYYYY"}
+				],
+				rows: []
+			};
+
+
+			//Create an array of output JSON objects
+			var arrResult = objResult.ResultSet.Result;
+
+			//Convert from Yahoo's JSON to the grid's
+			for (var iRes = 0; iRes < arrResult.length; iRes++) {
+				objJsonSource.rows.push({cells: [
+					{data: (iRes + 1) + '. <a href="' + arrResult[iRes].ClickUrl + '">' +arrResult[iRes].Title + '</a>'},
+					{data: arrResult[iRes].Summary},
+					{data:  arrResult[iRes].Url},
+					{data: arrResult[iRes].ModificationDate}
+					]});
+			}
+
+			//And now display the grid
+			var myTable = new Zapatec.Grid({
+				source: objJsonSource,
+				sourceType: 'json',
+				callbackHeaderDisplay: myCallbackHeader,
+				callbackRowDisplay: myCallbackRow
+			});
+		};
+
+		//Globals
+		var container = document.getElementById('myOutput');
+		var searchUrl = "";
+
+		//Gets called by the grid to display headers
+		function myCallbackHeader(objHeader) {
+			var html = [];
+			//html.push(searchUrl); //uncomment to see the url
+			html.push('<div style="');
+				if (objHeader.userTableStyle) {
+					html.push(objHeader.userTableStyle);
+				}
+				html.push('"<div style="');
+					if (objHeader.userStyle) {
+						html.push(objHeader.userStyle);
+					}
+					html.push('"> Sort by: ');
+					for (var iCol = 0; iCol < objHeader.fields.length; iCol++) {
+						html.push('<span class="myHeader" style="');
+							if (objHeader.fields[iCol].userStyle) {
+								html.push(objHeader.fields[iCol].userStyle);
+							}
+							html.push('" onclick="');
+							if (objHeader.fields[iCol].onclick) {
+								html.push(objHeader.fields[iCol].onclick);
+							}
+							html.push('">');
+							if (objHeader.fields[iCol].title) {
+								html.push(objHeader.fields[iCol].title);
+							}
+							html.push('</span>');
+					}
+					html.push('<br/></div>');
+				container.innerHTML = html.join('');
+			};
+
+			//Gets called by the grid to display rows
+			function myCallbackRow(objRow) {
+				var output = '<div class="myRow">';
+				for (var iCol = 0; iCol < objRow.cells.length; iCol++) {
+					output += '<br/> <span';
+						if (objRow.cells[iCol].userStyle) {
+							output += 'style="' + objRow.cells[iCol].userStyle;
+						}
+						output += '">';
+						if (objRow.cells[iCol].data) {
+							output += objRow.cells[iCol].data.toString();
+						}
+						output += '</span>';
+				}
+				output += '</div>';
+				container.innerHTML = container.innerHTML + output;
+			};
+
+			//Called from the form to do the search
+			function doSearch() {
+				var iResults = 10;
+				var objScript = Zapatec.Utils.createElement('script', window.document.body);
+				objScript.type = 'text/javascript';
+				searchUrl = "http://api.search.yahoo.com/WebSearchService/V1/webSearch?appid=zapatec1&query=" +
+					objSearchInput.value + "&results=" + iResults + "&output=json&callback=showResults";
+				objScript.src = searchUrl;
+				objSearchInput.focus();
+				return false;
+			};
+
+		</script>
+</div>
+</div>
+
+	<br/><br/><br/>
+	<div id="divFooter" class="footer" style='text-align:center; margin-top:2em'>
+		&copy; 2004 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+	</div>
+</td></tr></table>
+</body>
+</html>
+

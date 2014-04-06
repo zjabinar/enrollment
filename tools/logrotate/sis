@@ -1,0 +1,9 @@
+/var/www/html/sis/sis.log {
+	create 666 root root
+	compress
+	# size=10M
+	monthly
+	rotate 24
+	missingok
+    notifempty
+}

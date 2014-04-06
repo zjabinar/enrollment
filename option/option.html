@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../admin/base.css" />
+<title> Options </title>
+<script type="text/JavaScript" src="option.js"></script>
+
+<script type="text/JavaScript">
+
+function funcOnLoad()
+{
+	var scrollbar;
+	var receipt_x,receipt_y;
+
+	// get cookie values
+	scrollbar = get_cookie("opt_scrollbar",0);
+	receipt_x = get_cookie("opt_receipt_x",0);
+	receipt_y = get_cookie("opt_receipt_y",0);
+	printer_x = get_cookie("opt_printer_x",0);
+	printer_y = get_cookie("opt_printer_y",0);
+
+	// apply to the form
+	if( scrollbar>0 ) {
+		document.mainform.scrollbar.click();
+	}
+	document.mainform.receipt_x.value = receipt_x;
+	document.mainform.receipt_y.value = receipt_y;
+	document.mainform.printer_x.value = printer_x;
+	document.mainform.printer_y.value = printer_y;
+}
+
+function funcOnSet()
+{
+	if( document.mainform.scrollbar.checked ) {
+		set_cookie( "opt_scrollbar",1 );
+	} else {
+		set_cookie( "opt_scrollbar",0 );
+	}
+	set_cookie( "opt_receipt_x", document.mainform.receipt_x.value );
+	set_cookie( "opt_receipt_y", document.mainform.receipt_y.value );
+	set_cookie( "opt_printer_x", document.mainform.printer_x.value );
+	set_cookie( "opt_printer_y", document.mainform.printer_y.value );
+}
+
+</script>
+</head>
+
+<body onLoad="funcOnLoad()">
+
+<h1>Options</h1>
+<hr>
+
+<form name="mainform">
+<table border="1">
+<tr>
+  <td>Scroll Bar</td>
+  <td><input type="checkbox" name="scrollbar" value="1">Use scroll bar on long lists
+  </td>
+</tr>
+<tr>
+  <td>Receipt printing</td>
+  <td><table border="0">
+        <tr><td>horizontal adjustment</td><td><input type="text" name="receipt_x" value="0" size="4">mm</td></tr>
+        <tr><td>vertical adjustment</td><td><input type="text" name="receipt_y" value="0" size="4">mm</td></tr>
+      </table>
+  </td>
+</tr>
+<tr>
+  <td>Forms and slips printing</td>
+  <td><table border="0">
+        <tr><td>horizontal adjustment</td><td><input type="text" name="printer_x" value="0" size="4">mm</td></tr>
+		<tr><td>vertical adjustment</td><td><input type="text" name="printer_y" value="0" size="4">mm</td></tr>
+      </table>
+  </td>
+</tr>
+</table>
+<input type="button" value="OK" onClick="funcOnSet(); window.close()"><br>
+<input type="button" value="Cancel" onClick="window.close()">
+</form>
+
+</body>
+
+</html>

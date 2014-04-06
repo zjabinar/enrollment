@@ -1,0 +1,106 @@
+/*
+  Root class name is formed from zpGrid + theme file name with first character
+  in upper case and following characters in lower case.
+*/
+
+.zpGridWinxp {
+  border-collapse: collapse;
+  border: none;
+}
+
+.zpGridWinxp .zpGridTable {
+  padding: 0px;
+}
+
+.zpGridWinxp table {
+  border-collapse: collapse;
+}
+
+.zpGridWinxp table td {
+  border: 1px solid #f1efe2;
+  padding: 3px 5px;
+  font: 11px Tahoma, Arial, sans-serif;
+  cursor: default;
+}
+
+.zpGridWinxp table tr.zpGridRowOdd  {
+  background: #ffffff;
+}
+
+.zpGridWinxp table tr.zpGridRowEven {
+  background: #ffffff;
+}
+
+.zpGridWinxp table tr.zpGridRowActiveOdd,
+.zpGridWinxp table tr.zpGridRowActiveEven {
+  background: #316AC5;
+  color: #FFFFFF;
+}
+
+.zpGridWinxp table .zpGridRow0 td {
+  background: url(winxp/headbg.jpg) repeat-x bottom #eaebdb;
+  cursor: pointer;
+  font-weight: normal;
+  border-right: solid 1px #ACA899;
+  border-top: none;
+  border-bottom: 1px solid #f1efe2;
+    font: 11px Tahoma, Arial, sans-serif;
+  padding-bottom: 5px;
+  color: #000;  
+}
+
+.zpGridWinxp table .zpGridRow0 .zpGridCellActive {
+  background: url(winxp/headbgsel.jpg) repeat-x bottom #FAF9F4;
+}
+
+.zpGridWinxp table .zpGridRowLast td {
+  border-bottom: solid 1px #D6D2C2;
+}
+
+.zpGridWinxp table .zpGridCell0 {
+  border-left: none;
+  background: url(winxp/firstcolbg.jpg) repeat-x top #eaebdb;
+  border-width: 0px 1px 2px 0px;
+  border-style: solid;
+  border-color: #D6D2C2;
+  text-align: center;
+  color: #000;
+}
+
+.zpGridWinxp table .zpGridCellLast {
+  border-right: solid 1px #D6D2C2;
+}
+
+.zpGridWinxp table tr.zpGridRowSelected {
+  background: #f90;
+}
+
+.zpGridWinxp table tr .zpGridCellSelected {
+  background: #f00;
+}
+
+.zpGridWinxp .zpGridPagination {
+  font: small Arial, sans-serif;
+  color: #000;
+  text-align: center;
+  padding-top:5px;
+}
+
+.zpGridWinxp .zpGridNextPage,
+.zpGridWinxp .zpGridPrevPage {
+  background: url(winxp/firstcolbg.jpg) repeat-x top #eaebdb;
+  cursor: pointer;
+}
+
+.zpGridWinxp .zpGridTypeInt,
+.zpGridWinxp .zpGridTypeFloat {
+  text-align: right;
+}
+
+.zpGridWinxpUpdating {
+  background: #ffc;
+  padding: 15px;
+  border: 1px solid #c90;
+  font: bold medium Arial, sans-serif;
+  color: #c90;
+}

@@ -1,0 +1,176 @@
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+  <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8" />
+  <script type="text/javascript" src="../utils/utils.js"></script>
+  <script type="text/javascript" src="../utils/transport.js"></script>
+  <script type="text/javascript" src="../utils/zpwidget.js"></script>
+  <script type="text/javascript" src="../src/zpgrid.js"></script>
+  <link href="../themes/layout.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/zpcal.css" rel="stylesheet" type="text/css" />
+  <link href="../website/css/template.css" rel="stylesheet" type="text/css" />
+  <link rel="SHORTCUT ICON" href="http://www.zapatec.com/website/main/favicon.ico" />
+  <title>Zapatec AJAX Grid Widget - Load Grid from Url</title>
+  
+</head>
+<body>
+
+	<table class='zpStandard'><tr><td>
+
+	<div class="topMenuHeader">
+		<div class="logo">
+			<a href='http://www.zapatec.com'><img src='../website/images/logoNew.gif' alt='Zapatec logo' border='0'></a>
+		</div>
+		<div class="btn1">
+			<a href="https://www.zapatec.com/zadmin/buy.jsp">
+				<img src="../website/images/buttonBuy.png" alt='Buy Zapatec Forms' border="0">
+			</a>
+		</div>
+
+		<div class="btn1">
+			<a href="http://www.zapatec.com/website/main/pricing.jsp">
+				<img src="../website/images/buttonPricing.png" alt='Pricing for Zapatec Forms' border="0">
+			</a>
+		</div>
+	</div>
+
+	<div class="pageMain">
+	<a href="phone.html" style="float:left; margin-left:2em; margin-top:.5em;" accesskey="P">
+			<img border="0" src="../website/images/previous.png" alt="Previous Zapatec Javascript Form Example"></a>
+	<a href="yahoo.html" style="float:right; margin-right:2em; margin-top:.5em;" accesskey="N">
+			<img border="0" src="../website/images/next.png" alt="Next Zapatec Javascript Form Example"></a>
+		<div class='zpCalSubHeader' style='text-align:center'>Load Grid from Url</div>
+
+		<br/>	
+
+
+<div class='leftCol'>
+<h3> Controls</h3>
+
+<script type="text/javascript" >
+var myTable;
+function range_debits(form) { myTable.limitRange({column: 4, min: 0, max: Infinity}); }
+function range_credits(form) { myTable.limitRange({column: 4, min: -Infinity, max: 0}); }
+function range_all(form) { myTable.limitRange({column: 4, min: -Infinity, max: Infinity}); }
+function range_refnum(form) { myTable.limitRange({column: 3, min: form.intMin_ref.value, max: form.intMax_ref.value}); 
+}
+</script>
+
+<fieldset>
+Date Filter<div id="myFilterOut"></div>
+</fieldset>
+<fieldset>
+Account Filter<div id="myFilterAcct"></div>
+</fieldset>
+
+<FORM NAME="myform" ACTION="" METHOD="POST"><BR>
+<fieldset>
+<p>Range of Ref#<p/>
+<p>
+<INPUT TYPE="text" NAME="intMin_ref" size='4' VALUE=""> to 
+<INPUT TYPE="text" NAME="intMax_ref" size='4' VALUE="">
+</p>
+<INPUT TYPE="button" NAME="buttonRefnum" Value="Filter" onClick="range_refnum(this.form)">
+</fieldset>
+<fieldset>
+<div>
+<INPUT TYPE="button" NAME="buttonDebits" Value="Debits" onClick="range_debits(this.form)">
+<br>
+<INPUT style='color:#f00' TYPE="button" NAME="buttonCredits" Value="Credits" onClick="range_credits(this.form)">
+<br>
+<INPUT TYPE="button" NAME="buttonAll" Value="All" onClick="range_all(this.form)">
+</div>
+</fieldset>
+</FORM>
+
+</div>
+
+<div class='mainCol'>
+	Using the Zapatec AJAX Transport to build the grid after the page is displayed. 
+The grid data can be defined as HTML table, <a href='http://www.crockford.com/JSON/'>JSON</a>, or XML, making it easy to generate
+using any server side technology.<br/> Often this will be database generated data.
+
+<br/><br/>
+	<a href='javascript:loadGrid("json_demo.txt", "json/url")'> Fetch the JSON grid. </a>
+<br/><br/>
+	<a href='json_demo.txt' target='_blank'> See the JSON file. </a>
+<br/><br/>
+	<a href='javascript:loadGrid_xml()'> Fetch the XML grid. </a>
+<br/><br/>
+	<a href='xml_demo.xml' target='_blank'> See the XML file. </a>
+<br/>
+<br/>
+<ul>
+<li>Full Name is Text Insensitive.  Sorting does NOT check if upper or lower case.</li>
+<li>Total Charges - Credits in <span style='color: #f00'>RED</span>, see JSON file.</li>
+</ul>
+
+<div id="myGrid">
+</div>
+
+<hr>
+</div>
+
+<script type="text/javascript" >
+
+	// filterOut callback for Account
+	function callback_Acct(objUniqueColVals)
+	{
+	var i, s='', val;
+	var divid=document.getElementById('myFilterAcct')
+	var obj=objUniqueColVals;
+
+	for (i=0; i<obj.length; i++)
+	{
+		s+='<div>'
+		// Print the Unique Value from Grid Column
+		s+= obj[i].value
+		// calls the Zapatec.Grid.onclick method
+		s+='<input type="checkbox" checked onclick="' + obj[i].onclick + '">'
+		s+='</div>'
+	}
+	divid.innerHTML=s
+	}
+
+	function loadGrid(opSource, opSourceType) {
+		myTable = new Zapatec.Grid({
+			source: opSource,
+			sourceType: opSourceType,
+			container: 'myGrid',
+			theme: 'lightblue',
+			filterOut: [
+			{container: 'myFilterOut', column: 0},
+			{callback: callback_Acct, column: 1} // Filter Acct
+			]
+		});
+	}
+	function loadGrid_xml() {
+		myTable = new Zapatec.Grid({
+			source: 'xml_demo.xml',
+			sourceType: 'xml/url',
+			container: 'myGrid',
+			theme: 'blackandwhite',
+			filterOut: [
+			{container: 'myFilterOut', column: 0},
+			{callback: callback_Acct, column: 1} // Filter Acct
+			]
+		});
+	}
+
+</script>
+</div>
+</div>
+
+	<br/><br/><br/>
+	<div id="divFooter" class="footer" style='text-align:center; margin-top:2em'>
+		&copy; 2004 <strong> <a href='http://www.zapatec.com/'>Zapatec, Inc.</a> </strong>
+	</div>
+</td></tr></table>
+</body>
+</html>
+

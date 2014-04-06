@@ -1,0 +1,376 @@
+<?php
+	session_start();
+	require_once("../include/auth.inc");
+	require_once("../include/util.inc");
+	require_once("../include/semester.inc");
+	require_once("../include/course.inc");
+	require_once("../include/student.inc");
+	require_once("../include/enrol_student.inc");
+	auth_check( AUTH_REGISTRAR );
+
+$val = array(
+	"student_id"		=> "StudentID",
+	"first_name"		=> "First Name",
+	"middle_name"		=> "Middle Name",
+	"last_name"			=> "Last Name",
+	"civil_status"		=> "Civil Status",
+	"date_of_birth"		=> "Date of birth",
+	"place_of_birth"	=> "Place of birth",
+	"present_address"	=> "Present Address",
+	"p_first_name"		=> "Parent(Guardian) First Name",
+	"p_middle_name"		=> "Parent(Guardian) Middle Name",
+	"p_last_name"		=> "Parent(Guardian) Last Name",
+	"p_relation"		=> "Parent(Guardian) relation",
+	"parent_address"	=> "Parent Address",
+	"course_id"			=> "Course",
+	"enter_sy"			=> "Entered semester",
+	"graduate_sy"		=> "Graduated semester",
+	"feebase_sy"		=> "Fee base semester",
+	"home_address"		=> "Home Address",
+	"gender"			=> "Gender",
+	"elem_school"		=> "Elementary school",
+	"elem_grad_year"	=> "Year graduated elementary school",
+	"second_school"		=> "Secondary school",
+	"second_grad_year"	=> "Year graduated secondary school",
+	"course_completed"	=> "Course Completed",
+	"last_school"		=> "Last school attended",
+	"last_school_year"	=> "Last school attended year"
+);
+
+function print_edit_form( $student, $bool_new )
+{
+	global $lookup_gender;
+	global $val;
+
+	$sy_array = get_schoolyear_array();
+
+	echo "<table border=\"1\">";
+	foreach( $val as $idx => $name ) {
+		echo "<tr>";
+		if( $idx == "student_id" ) {
+			//if( $bool_new ) {
+			//	echo "<td>" . $name . "</td>";
+			//	echo "<td><input type=\"text\" name=\"${idx}\" value=\"" . mkstr_student_id($student[$idx]) . "\"></td>";
+			//} else {
+			if( ! $bool_new ) {
+				echo "<td>" . $name . "</td>";
+				echo "<td>" . mkstr_student_id($student[$idx]);
+				echo "<input type=\"hidden\" name=\"${idx}\" value=\"" . mkstr_student_id($student[$idx]) . "\"></td>";
+			}
+		} else if( $idx == "course_id" ) {
+			echo "<td> $name </td>";
+			echo "<td> <select name=\"${idx}\">";
+			$ca = get_course_array();
+			foreach( $ca as $id => $nm ) {
+				echo "<option value=\"${id}\"";
+				if( $id==$student[$idx] ) echo " selected";
+				echo ">${nm}</option>";
+			}
+			echo "</select></td>";
+		} else if( $idx == "gender" ) {
+			echo "<td> $name </td>";
+			echo "<td>";
+			foreach( $lookup_gender as $id => $nm ) {
+				echo "<input type=\"radio\" name=\"gender\" value=\"${id}\"";
+				if( $id==$student[$idx] ) echo " checked";
+				echo ">${nm}";
+			}
+			echo "</td>";
+		} else if( ($idx == "enter_sy") || ($idx == "feebase_sy") ) {
+			$def = $student[$idx];
+			if( $student[$idx]==0 ) $def = MKHTML_SELECT_FIRST;
+			echo "<td> $name </td>";
+			echo "<td>" . mkhtml_select( $idx, $sy_array, $def ) . "</td>";
+		} else if( $idx == "graduate_sy" ) {
+			$def = $student[$idx];
+			if( $student[$idx]==0 ) $def = MKHTML_SELECT_FIRST;
+			echo "<td> $name </td>";
+			unset($ar);
+			$ar[0] = "";
+			foreach( $sy_array as $i=>$j ) $ar[$i] = $j;
+			echo "<td>" . mkhtml_select( $idx, $ar, $def ) . "</td>";
+		} else if( $idx == "date_of_birth" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"date_of_birth_txt\" value=\"" . $student['date_of_birth_txt'] . "\"> (MM/DD/YYYY) </td>";
+		} else if( $idx == "civil_status" ) {
+			unset($ar);
+			$ar[0] = "";
+			foreach( get_civilstatus_array() as $i=>$j ) $ar[$i] = $j;
+				echo "<td>" . $name . "</td>";
+				echo "<td>" . mkhtml_select( $idx, $ar, $student[$idx] ) . "</td>";
+		} else if( $idx == "first_name" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"${idx}\" value=\"${student[$idx]}\">(Jr,II,etc.. should be added here)</td>";
+		} else {
+			echo "<td>" . $name . "</td>";
+			echo "<td><input type=\"text\" name=\"${idx}\" value=\"${student[$idx]}\"></td>";
+		}
+		echo "</tr>\n";
+	}
+	echo "</table>";
+
+	echo '<script type="text/javascript">document.mainform.first_name.focus();</script>';
+}
+
+function print_edit_info($student)
+{
+	global $lookup_gender;
+	global $val;
+
+	echo "<table border=\"1\">";
+	foreach( $val as $idx => $name ) {
+		echo "<tr>";
+		if( $idx == "student_id" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . mkstr_student_id($student[$idx]) . "</td>";
+		} else if( $idx == "course_id" ) {
+			echo "<td> $name </td>";
+			echo "<td>" . get_course_from_course_id($student[$idx]) . "</td>";
+		} else if( $idx == "gender" ) {
+			echo "<td> $name </td>";
+			echo "<td>" . $lookup_gender[$student[$idx]] . "</td>";
+		} else if( $idx == "date_of_birth" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . mkstr_date($student[$idx]) . "</td>";
+		} else if( ($idx == "enter_sy") || ($idx == "feebase_sy") ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_schoolyear($student[$idx]) . "</td>";
+		} else if( $idx == "graduate_sy" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_schoolyear($student[$idx]) . "</td>";
+		} else if( $idx == "civil_status" ) {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . lookup_civilstatus($student[$idx]) . "</td>";
+		} else {
+			echo "<td>" . $name . "</td>";
+			echo "<td>" . $student[$idx] . "</td>";
+		}
+		echo "</tr>\n";
+	}
+	echo "</table>";
+}
+
+function check_data( $dat )
+{
+	if( $dat["gender"]=='' ) {
+		return 'Gender not selected';
+	}
+	if( strlen($dat["first_name"])==0 ) {
+		return 'No first_name';
+	}
+	if( strlen($dat["last_name"])==0 ) {
+		return 'No last_name';
+	}
+	return null;
+}
+
+?>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script type="text/JavaScript" src="../option/option.js"></script>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<title> Student Registration </title>
+</head>
+
+<body onLoad="optionOnLoad()" onResize="optionOnResize()">
+<?php
+	print_heading();
+?>
+
+<?php
+	$sy_id = $_SESSION["sy_id"];
+	print_title( get_office_name($_SESSION["office"]), "Student Registration", lookup_schoolyear($sy_id) );
+
+	echo '<form method="POST" name="mainform">';
+
+	if( ((! isset($_REQUEST["student_id"])) && (! isset($_REQUEST["add"]))) || isset($_REQUEST['search']) ) {	// search
+		echo '<div class="prompt">Enter Student ID or Last Name to Search</div>';
+		echo "<input type=\"text\" name=\"search_str\" value=\"${_REQUEST["search_str"]}\">";
+		echo " <input type=\"submit\" name=\"search\" value=\"Search\"><br>";
+		echo '<script type="text/javascript">document.mainform.search_str.focus();</script>';
+		echo '<br>';
+
+		$result = false;
+		$list = new model_student;
+		if( is_numeric($_REQUEST["search_str"]) ) {
+			$list->connect();
+			$result = $list->search_by_id( $_REQUEST["search_str"] );
+		} else if( isset($_REQUEST["search_str"]) ) {
+			$list->connect();
+			$result = $list->search_by_lastname( $_REQUEST["search_str"] );
+		}
+		if( $result != false ) {
+			echo '<div' . ($list->get_numrows()>2 ? ' id="scrolllist"' : '') . '>';
+			echo "<table border=\"1\">";
+			echo "<tr>";
+			echo "<th>&nbsp;</th>";
+			echo "<th>StudentID</th><th>FirstName</th><th>MiddleName</th><th>LastName</th><th>Department</th><th>Course</th><th>Graduate</th>";
+			echo "</tr>";
+			for( $i=0; $i<$list->get_numrows(); $i++ ) {
+				$dat = $list->get_fetch_assoc($i);
+				if( ! isset($course_cache[$dat["course_id"]]) ) {
+					list($dep,$course,$major,$minor) = get_short_names_from_course_id( $dat["course_id"] );
+					$course_cache[ $dat["course_id"] ] = $course . ' ' . $major . ' ' . $minor;
+					$dep_cache[ $dat["course_id"] ] = $dep;
+				}
+				printf( "<tr>" );
+				printf( "<td><input type=\"radio\" name=\"student_id\" value=\"%s\"></td>", $dat["student_id"] );
+				printf( "<td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td>\n",
+					mkstr_student_id($dat["student_id"]),
+					mkstr_neat($dat["first_name"]),
+					mkstr_neat($dat["middle_name"]),
+					mkstr_neat($dat["last_name"]),
+					mkstr_neat( $dep_cache[$dat["course_id"]] ),
+					mkstr_neat( $course_cache[$dat["course_id"]] ),
+					($dat["graduate_sy"] > 0) ? get_year_from_schoolyear($dat["graduate_sy"]) : "&nbsp;"
+				);
+				printf( "</tr>" );
+			}
+			echo "</table>";
+			echo '</div>';
+			echo "<input type=\"submit\" name=\"edit\" value=\"Edit\">";
+			echo "<input type=\"submit\" name=\"del\" value=\"Delete\">";
+		}
+		$list->close();
+
+		echo "<input type=\"submit\" name=\"add\" value=\"Add New Student\">";
+	} else if( isset($_REQUEST["add"]) ) {
+		print_hidden( $_REQUEST,array('search_str') );
+		if( !isset($_REQUEST["confirm"]) ) {
+			if( isset($_REQUEST['retry']) ) $student = $_POST;
+			if( ! isset($student["graduate_sy"]) ) $student["graduate_sy"] = 0;	// new student, default is not graduated
+			echo '<div class="prompt">Enter student details</div>';
+			print_edit_form($student,true);
+			echo '<input type="submit" name="add" value="Add">';
+			echo '<input type="hidden" name="confirm">';
+			echo '<input type="hidden" name="student_id">';
+		} else {
+			$data = new model_student();
+			$data->connect( auth_get_writeable() );
+			$_REQUEST["date_of_birth"] = retrieve_date( $_REQUEST["date_of_birth_txt"] );
+			$err_msg = check_data($_REQUEST);
+			if( ! $err_msg ) {
+				$result = $data->add_auto( $_REQUEST );
+				if( $result==false ) {
+					$err_msg = $data->get_errormsg();
+				}
+			}
+			if( $err_msg ) {
+				echo '<div class="error">' . $err_msg . '</div>';
+			} else {
+				echo '<div class="message">Added successfully<br>Student ID is "<b>' . mkstr_student_id($result) . '</b>"</div>';
+			}
+		}
+	} else if( isset($_REQUEST["edit"]) ) {
+		print_hidden( $_REQUEST,array('search_str') );
+		$data = new model_student();
+		$data->connect( auth_get_writeable() );
+		if( !isset($_REQUEST["confirm"]) ) {
+			if( isset($_REQUEST['retry']) ) {
+				$student = $_POST;
+			} else if( $data->get_by_id($_REQUEST["student_id"]) ) {
+				$student = $data->get_fetch_assoc(0);
+				$student['date_of_birth_txt'] = mkstr_date($student['date_of_birth']);
+			} else {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			}
+			if( isset($student) ) {
+				echo '<div class="prompt">Edit student details</div>';
+				print_edit_form($student,false);
+				echo '<input type="submit" name="confirm" value="Update">';
+				echo '<input type="hidden" name="edit">';
+			}
+		} else {
+			/* check tblstudentsenrolled before updating */
+			$obj_enrol = new model_enrol_student;
+			$obj_enrol->connect( auth_get_writeable() );
+			$obj_enrol->get_by_id( $sy_id,$_REQUEST["student_id"] );
+			if( $obj_enrol->get_numrows()==1 ) $dat_enrol = $obj_enrol->get_fetch_assoc(0);
+			if( ($obj_enrol->get_numrows()==1) 
+				&& (($dat_enrol["feebase_sy"]!=$_REQUEST["feebase_sy"]) || ($dat_enrol["course_id"]!=$_REQUEST["course_id"]))
+				&& ($_REQUEST["confirm"]!="Yes" && $_REQUEST["confirm"]!="No") ) {
+				echo '<div class="prompt">The student is already enrolled in present semester (' . lookup_schoolyear($sy_id) . '). Do you want to continue?</div>';
+				echo '<input type="submit" name="confirm" value="Yes">';
+				// echo '<input type="submit" name="confirm" value="No">';
+				unset( $_POST["confirm"] );
+				print_hidden( $_POST );
+			} else {
+				/* Update */
+				$_REQUEST["date_of_birth"] = retrieve_date( $_REQUEST["date_of_birth_txt"] );
+				$result = $data->begin_transaction();
+				if( $result && ($_REQUEST["confirm"]=="Yes") ) {
+					$dat_enrol["feebase_sy"] = $_REQUEST["feebase_sy"];
+					$dat_enrol["course_id"] = $_REQUEST["course_id"];
+					$result = $obj_enrol->update( $dat_enrol );
+					if( ! $result ) $data->set_error( $obj_enrol->get_errormsg() );
+				}
+				if( $result ) $result = $data->update( $_REQUEST );
+				if( $result ) {
+					$data->end_transaction();
+				} else {
+					$data->rollback();
+				}
+				if( $result==false ) {
+					$err_msg = $data->get_errormsg();
+					echo '<div class="error">' . $err_msg . '</div>';
+				} else {
+					echo '<div class="message">Updated successfully</div>';
+				}
+			}
+		}
+		$data->close();
+	} else if( isset($_REQUEST["del"]) ) {
+		print_hidden( $_REQUEST,array('search_str') );
+		$data = new model_student();
+		$data->connect( auth_get_writeable() );
+		if( ! isset($_REQUEST["confirm"]) ) {
+			if( $data->get_by_id($_REQUEST["student_id"])==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				$student = $data->get_fetch_assoc(0);
+				echo '<div class="prompt">Delete following data?</div>';
+				print_edit_info($student);
+				echo '<input type="hidden" name="student_id" value="' . $_REQUEST["student_id"] . '">';
+				echo '<input type="submit" name="del" value="Delete">';
+				echo '<input type="hidden" name="confirm">';
+			}
+		} else {
+			if( $data->del( $_REQUEST["student_id"] )==false ) {
+				echo '<div class="error">' . $data->get_errormsg() . '</div>';
+			} else {
+				echo '<div class="message">Deleted successfully</div>';
+			}
+		}
+		$data->close();
+	}
+	echo '</form>';
+
+	print_footer();
+
+	if( ((!isset($_REQUEST["student_id"])) && (!isset($_REQUEST["add"]))) || isset($_REQUEST['search']) ) {
+		echo "<form action=\"index.php\" method=\"POST\" id=\"goback\">";
+		echo " <input type=\"submit\" value=\"Go back\">";
+		echo ' <input type="hidden" name="sy_id" value="' . $_SESSION["sy_id"] . '">';
+		echo "</form>";
+	} else if( isset($_REQUEST["confirm"]) && $err_msg!='' ) {
+		echo '<form method="POST" id="goback">';
+		echo ' <input type="submit" value="Go back">';
+		unset( $_POST["confirm"] );
+		print_hidden( array('retry'=>1) );
+		print_hidden( $_POST );
+		echo '</form>';
+	} else {
+		echo "<form method=\"POST\" id=\"goback\">";
+		echo " <input type=\"submit\" value=\"Go back\">";
+		print_hidden( $_REQUEST,array('search_str') );
+		echo "</form>";
+	}
+?>
+
+</body>
+
+</html>

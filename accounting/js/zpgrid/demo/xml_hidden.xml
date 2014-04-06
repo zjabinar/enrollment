@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<grid>
+ <table style="border: solid black 1px" headerStyle="">
+  <fields>
+   <field><title>Date</title><datatype>date</datatype></field>
+   <field><title>Account</title><datatype>string</datatype></field>
+   <field style="font-weight: bold"><title>Full Name</title><datatype>istring</datatype></field>
+   <field><title>Ref#</title><datatype>integer</datatype></field>
+   <field hidden="hidden"><title>Amount</title><datatype>float</datatype></field>
+  </fields>
+  <rows>
+
+   <row>
+<cell>10/03/2005</cell><cell>SMITH-001</cell><cell>Smith, John</cell><cell style="text-align:right;">123</cell><cell style="color: #f00; text-align:right;">-100.01</cell>
+   </row>
+
+   <row>
+<cell>10/03/2005</cell><cell>SMITH-001</cell><cell>Smith, John</cell><cell style="text-align:right;">124</cell><cell style="color: #f00; text-align:right;">-40.04</cell>
+   </row>
+
+   <row>
+<cell>10/04/2005</cell><cell>SMITH-002</cell><cell>Smith, Bob</cell><cell style="text-align:right;">125</cell><cell style="text-align:right;">50.05</cell>
+   </row>
+
+   <row>
+<cell>10/05/2005</cell><cell>SMITH-003</cell><cell>SMITH, Dan</cell><cell style="text-align:right;">999</cell><cell style="text-align:right;">25.52</cell>
+   </row>
+
+   <row>
+<cell>9/23/2005</cell><cell>JONES-001</cell><cell>Jones, Mary</cell><cell style="text-align:right;">22</cell><cell style="text-align:right;">12.21</cell>
+   </row>
+
+   <row>
+<cell>1/01/2005</cell><cell>BROWN-001</cell><cell>Brown, Jane</cell><cell style="text-align:right;">1</cell><cell style="color: #f00; text-align:right;">-2.34</cell>
+   </row>
+
+  </rows>
+ </table>
+</grid>

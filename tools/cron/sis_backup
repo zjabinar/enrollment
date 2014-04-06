@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /home/sis_backup
+./backup_main.sh
+exit 0

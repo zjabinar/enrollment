@@ -1,0 +1,108 @@
+/*
+  Root class name is formed from zpGrid + theme file name with first character
+  in upper case and following characters in lower case.
+*/
+
+.zpGridBlackandwhite {
+    border-collapse: collapse;
+  border: none;
+}
+
+.zpGridBlackandwhite .zpGridTable {
+  padding: 0px;
+}
+
+.zpGridBlackandwhite table {
+    border-collapse: collapse;
+}
+
+.zpGridBlackandwhite table td {
+  border: 1px solid #666666;
+  padding: 3px 5px;
+  font: 11px Verdana, Arial, Tahoma, sans-serif;
+  cursor: Blackandwhite;
+}
+
+.zpGridBlackandwhite table tr.zpGridRowOdd  {
+  background: #cccccc;
+}
+
+.zpGridBlackandwhite table tr.zpGridRowEven {
+  background: #ffffff;
+}
+
+.zpGridBlackandwhite table tr.zpGridRowActiveOdd,
+.zpGridBlackandwhite table tr.zpGridRowActiveEven {
+        background: #666666;
+    color: #f0f3f8;
+}
+
+.zpGridBlackandwhite table .zpGridRow0 td {
+  background: #777777;
+  cursor: pointer;
+  border-right: solid 1px #ACA8A9;
+  border-top: solid 1px #cccccc;
+  font: 11px Verdana, Arial, Tahoma, sans-serif;
+    font-weight: normal;
+  padding-top: 5px;
+  color: #DDDDDD; 
+}
+
+.zpGridBlackandwhite table .zpGridRow0 .zpGridCellActive {
+  background: #999898;
+  cursor: pointer;
+  color: #222229; 
+}
+
+.zpGridBlackandwhite table .zpGridRowLast td {
+  border-bottom: solid 1px #666666;
+}
+
+.zpGridBlackandwhite table .zpGridCell0 {
+  text-align: center;
+}
+
+.zpGridBlackandwhite table tr.zpGridRow0 .zpGridCellLast {
+  border-right: solid 1px #666666;
+}
+
+.zpGridBlackandwhite table .zpGridCellLast {
+}
+
+.zpGridBlackandwhite table tr.zpGridRowSelected {
+  background: #f90;
+}
+
+.zpGridBlackandwhite table tr .zpGridCellSelected {
+  background: #f00;
+}
+
+.zpGridBlackandwhite .zpGridPagination {
+  font: 12px Arial, Tahoma, Verdana, sans-serif;
+  color: #999999;
+  text-align: center;
+  padding-top:5px;
+  font-weight: bold;
+}
+
+.zpGridBlackandwhite .zpGridNextPage{
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.zpGridBlackandwhite .zpGridPrevPage {
+   cursor: pointer;
+  padding-right: 10px;
+}
+.zpGridBlackandwhite .zpGridNextPage:hover,
+.zpGridBlackandwhite .zpGridPrevPage:hover {
+  text-decoration: underline;
+}
+
+.zpGridBlackandwhiteUpdating {
+  background: #ffc;
+  padding: 15px;
+  border: 1px solid #c90;
+  font: bold medium Arial, sans-serif;
+  color: #c90;
+}

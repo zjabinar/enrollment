@@ -1,0 +1,43 @@
+{
+	"style": "",
+	"headerStyle": "",
+	"fields": [
+		{"title": "Date", "dataType": "date"},
+		{"title": "Text", "dataType": "string"},
+		{"title": "Text Insensitive", "dataType": "istring", "style": "font-weight: bold"},
+		{"title": "Integer", "dataType": "integer"}
+	],
+	"rows": [
+		{"cells": [{"data": "10/03/2005"}, {"data": "dhtml aaa"}, {"data": "http://www.zapatec.com/website/main/products/ZZZZZ/"}, {"data": 1, "style": "color: #f00"}]},
+		{"cells": [{"data": "10/02/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/aaaa/"}, {"data": 46}],
+		 "style": "background: #ccc"},
+		{"cells": [{"data": "10/01/2005"}, {"data": "dhtml bbb"}, {"data": "http://www.zapatec.com/website/main/products/bbbbb/"}, {"data": 111}]},
+		{"cells": [{"data": "09/30/2005"}, {"data": "dhtml 1111"}, {"data": "http://www.zapatec.com/website/main/products/CCCCCC/"}, {"data": 44}]},
+		{"cells": [{"data": "09/29/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/aaaaaa/"}, {"data": 46}]},
+		{"cells": [{"data": "09/28/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/JJJJJ/"}, {"data": 46}]},
+		{"cells": [{"data": "09/27/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/kkkkkk/"}, {"data": 46}]},
+		{"cells": [{"data": "09/26/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 46}]},
+		{"cells": [{"data": "09/25/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 45}]},
+		{"cells": [{"data": "09/24/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 45}]},
+		{"cells": [{"data": "09/23/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 47}]},
+		{"cells": [{"data": "09/22/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 47}]},
+		{"cells": [{"data": "09/21/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 47}]},
+		{"cells": [{"data": "09/20/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 47}]},
+		{"cells": [{"data": "09/19/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 47}]},
+		{"cells": [{"data": "09/18/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 45}]},
+		{"cells": [{"data": "09/17/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 45}]},
+		{"cells": [{"data": "09/16/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 44}]},
+		{"cells": [{"data": "09/15/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 24}]},
+		{"cells": [{"data": "09/14/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 23}]},
+		{"cells": [{"data": "09/13/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 25}]},
+		{"cells": [{"data": "09/12/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 26}]},
+		{"cells": [{"data": "09/11/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 27}]},
+		{"cells": [{"data": "09/10/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 27}]},
+		{"cells": [{"data": "09/09/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 25}]},
+		{"cells": [{"data": "09/08/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 25}]},
+		{"cells": [{"data": "09/07/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 25}]},
+		{"cells": [{"data": "09/06/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 26}]},
+		{"cells": [{"data": "09/05/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 27}]},
+		{"cells": [{"data": "09/04/2005"}, {"data": "dhtml menu"}, {"data": "http://www.zapatec.com/website/main/products/prod2/"}, {"data": 27}]}
+	]
+}

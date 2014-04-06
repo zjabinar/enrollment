@@ -1,0 +1,19 @@
+{
+	"style": "border: solid black 1px",
+	"headerStyle": "",
+	"fields": [
+		{"title": "Date", "dataType": "date"},
+		{"title": "Account", "dataType": "string"},
+		{"title": "Full Name", "dataType": "istring", "style": "font-weight: bold"},
+		{"title": "Ref#", "dataType": "integer"},
+		{"title": "Amount", "dataType": "float"}
+	],
+	"rows": [
+		{"cells": [{"data": "10/03/2005"}, {"data": "SMITH-001"}, {"data": "Smith, John"}, {"data": 123, "style": "text-align:right;"}, {"data": -100.01, "style": "color: #f00; text-align:right;"}]},
+		{"cells": [{"data": "10/03/2005"}, {"data": "SMITH-001"}, {"data": "Smith, John"}, {"data": 124, "style": "text-align:right;"}, {"data": -40.04, "style": "color: #f00; text-align:right;"}]},
+		{"cells": [{"data": "10/04/2005"}, {"data": "SMITH-002"}, {"data": "Smith, Bob"}, {"data": 125, "style": "text-align:right;"}, {"data": 50.05, "style": "text-align:right;"}]},
+		{"cells": [{"data": "10/05/2005"}, {"data": "SMITH-003"}, {"data": "SMITH, Dan"}, {"data": 999, "style": "text-align:right;"}, {"data": 25.52, "style": "text-align:right;"}]},
+		{"cells": [{"data": "9/23/2005"}, {"data": "JONES-001"}, {"data": "Jones, Mary"}, {"data": 22, "style": "text-align:right;"}, {"data": 12.21, "style": "text-align:right;"}]},
+		{"cells": [{"data": "1/01/2005"}, {"data": "BROWN-001"}, {"data": "Brown, Jane"}, {"data": 1, "style": "text-align:right;"}, {"data": -2.34, "style": "color: #f00; text-align:right;"}]}
+	]
+}
